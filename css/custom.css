@@ -703,43 +703,33 @@ header .navbar.sticky-header{
 
 .single-portfolio-overlay{
 	position: absolute;
-	top: 10px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	background: rgba(0,0,0,0);
-	padding: 20px;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #7c7a7a9c;
+	padding: 0px;
 	transition: all 0.6s;
+	
 }
 
 .single-portfolio-overlay h2{
-	color: black;
+	color: white;
 	font-size: 22px;
 	font-weight: 500;
 	margin-top: 20px;
-	opacity: 0;
+	opacity: 1;
 	transition: all 0.8s;
+	text-align: center;
 }
 
 .single-portfolio-overlay h3{
 	font-weight: 400;
 	font-size: 16px;
-	color: #1b91ef;
-	opacity: 0;
+	color: white;
+	opacity: 1;
 	transition: all 0.8s;
-}
-
-.single-portfolio:hover .single-portfolio-overlay{
-	background: #ffffff9c;
-}
-
-.single-portfolio:hover .single-portfolio-overlay h2{
-	opacity: 1;
-	margin-top: 0;
-}
-
-.single-portfolio:hover .single-portfolio-overlay h3{
-	opacity: 1;
+	padding-left: 10px;
 }
 
 .mfp-content{
