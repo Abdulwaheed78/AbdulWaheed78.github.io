@@ -79,7 +79,7 @@ a:focus{
     width: 30px;
     height: 30px;
     border-radius: 2px;
-    background: #1b91ef;
+    background: #263238;
     -webkit-transform: translateY(0) rotate(45deg) scale(0);
     transform: translateY(0) rotate(45deg) scale(0);
     -webkit-animation: diamonds 1500ms linear infinite;
@@ -180,7 +180,7 @@ header .navbar{
 }
 
 .navbar-brand h1 span{
-	color: #1b91ef;
+	color:#263238;
 }
 
 header .navbar-collapse.collapse{
@@ -206,8 +206,8 @@ header .navbar-collapse.collapse{
 }
 
 .navbar .navbar-nav .nav-link.active{
-	background: none;
-	color: #1b91ef;
+	background: black;
+	color: white;
 }
 
 .navbar .navbar-nav .nav-link:hover,
@@ -217,7 +217,8 @@ header .navbar-collapse.collapse{
 
 .navbar .navbar-nav .nav-link.active:hover,
 .navbar .navbar-nav .nav-link.active:focus{
-	color: #1b91ef;
+	background: black;
+	color: white;
 }
 
 header .navbar.sticky-header{
@@ -274,7 +275,7 @@ header .navbar.sticky-header{
 
 .slicknav_nav a:hover{
 	background: none;
-	color: #1b91ef;
+	color: #263238;
 }
 
 /************************************/
@@ -320,16 +321,16 @@ header .navbar.sticky-header{
 
 .btn-download{
 	display: inline-block;
-	border: 2px solid #1b91ef;
+	border: 2px solid #263238;
 	padding: 14px 30px;
 	border-radius: 4px;
-	color: #1b91ef;
+	color: #263238;
 	transition: all 0.3s;
 }
 
 .btn-download:hover{
-	border-color: #1b91ef;
-	background-color: #1b91ef;
+	border-color: #263238;
+	background-color: #263238;
 	color: white;
 }
 
@@ -339,7 +340,7 @@ header .navbar.sticky-header{
 
 .about-us{
 	padding: 100px 0;
-	background-color: #f6f9fd;
+	/* background-color: #f6f9fd; */
 }
 
 .section-title{
@@ -358,11 +359,11 @@ header .navbar.sticky-header{
 	position: absolute;
 	bottom: 0;
 	left: 50%;
-	border-bottom: 10px dotted #1b91ef;
+	border-bottom: 10px dotted #263238;
 }
 
 .section-title h2{
-	color: #1b91ef;
+	color: #263238;
 	font-family: 'Berkshire Swash', cursive;
 	font-weight: normal;
 	font-size: 36px;
@@ -409,7 +410,7 @@ header .navbar.sticky-header{
 	display: block;
 	width: 40px;
 	height: 4px;
-	background: #1b91ef;
+	background: #263238;
 	position: absolute;
 	left: 0;
 	bottom: 0;
@@ -446,7 +447,7 @@ header .navbar.sticky-header{
 }
 
 .about-content ul li i{
-	color: #1b91ef;
+	color: #263238;
 	font-size: 20px;
 	position: absolute;
 	top: 0;
@@ -464,7 +465,7 @@ header .navbar.sticky-header{
 }
 
 .service-single{
-	background: #f6f9fd ;
+	/* background: #f6f9fd ; */
 	padding: 40px 30px;
 	text-align: center;
 	margin-bottom: 30px;
@@ -479,8 +480,8 @@ header .navbar.sticky-header{
 	left: -1px;
 	right: -1px;
 	bottom: -1px;
-	border-top: 1px solid #1b91ef;
-	border-bottom: 1px solid #1b91ef;
+	border-top: 1px solid #263238;
+	border-bottom: 1px solid #263238;
 	transform: scale(0,1);
 	transition: all 0.6s;
 }
@@ -493,8 +494,8 @@ header .navbar.sticky-header{
 	left: -1px;
 	right: -1px;
 	bottom: -1px;
-	border-left: 1px solid #1b91ef;
-	border-right: 1px solid #1b91ef;
+	border-left: 1px solid #263238;
+	border-right: 1px solid #263238;
 	transform: scale(1,0);
 	transition: all 0.6s;
 }
@@ -505,7 +506,7 @@ header .navbar.sticky-header{
 }
 
 .service-single .icon-box{
-	color: #1b91ef;
+	color: #263238;
 	font-size: 60px;
 	line-height: 1em;
 	margin-bottom: 26px;
@@ -567,7 +568,7 @@ header .navbar.sticky-header{
 }
 
 .experience-single h5{
-	color: #1b91ef;
+	color: #263238;
 	font-weight: 400;
 }
 
@@ -601,7 +602,7 @@ header .navbar.sticky-header{
 
 .education-pagination .swiper-pagination-bullet-active,
 .experience-pagination .swiper-pagination-bullet-active{
-	border-color: #1b91ef;
+	border-color: #263238;
 }
 
 .skill-single{
@@ -618,7 +619,7 @@ header .navbar.sticky-header{
 
 .skill-ratting{
 	font-size: 20px;
-	color: #1b91ef;
+	color: #263238;
 }
 
 .counter-single{
@@ -633,7 +634,7 @@ header .navbar.sticky-header{
 
 .counter-single .icon-box{
 	font-size: 50px;
-	color: #1b91ef;
+	color: #263238;
 	line-height: 80px;
 	margin-bottom: 10px;
 	width: 80px;
@@ -661,7 +662,7 @@ header .navbar.sticky-header{
 /***************************************/
 
 .portfolio{
-	background: #f6f9fd;
+	/* background: #f6f9fd; */
 	padding: 100px 0;
 }
 
@@ -691,9 +692,9 @@ header .navbar.sticky-header{
 }
 
 .portfolio-nav ul li a.active-portfolio{
-	background: #1b91ef;
+	background: #263238;
 	color: #fff;
-	border-color: #1b91ef;
+	border-color: #263238;
 }
 
 .single-portfolio{
@@ -757,7 +758,7 @@ header .navbar.sticky-header{
 
 .mfp-content .content .desc h5{
 	font-size: 16px;
-	color: #1b91ef;
+	color: #263238;
 	font-weight: 400;
 	margin-bottom: 20px;
 }
@@ -771,20 +772,20 @@ header .navbar.sticky-header{
 	display: inline-block;
 	font-size: 16px;
 	background: white;
-	border: 1px solid #1b91ef;
+	border: 1px solid #263238;
 	padding: 6px 20px;
-	color: #1b91ef;
+	color: #263238;
 	transition: all 0.3s;
 }
 
 .btn-view-project:hover{
-	border-color: #1b91ef;
+	border-color: #263238;
 	color: white;
-	background: #1b91ef;
+	background: #263238;
 }
 
 .mfp-close-btn-in .mfp-close{
-	color: #1b91ef;
+	color: #263238;
 }
 
 .load-more-portfolio{
@@ -803,8 +804,8 @@ header .navbar.sticky-header{
 }
 
 .load-more-portfolio a:hover{
-	border-color: #1b91ef;
-	color: #1b91ef;
+	border-color: #263238;
+	color: #263238;
 }
 
 /*******************************************/
@@ -846,8 +847,8 @@ header .navbar.sticky-header{
 	display: block;
 	width: 50px;
 	height: 50px;
-	background: #1b91ef;
-	border: 1px solid #1b91ef;
+	background: #263238;
+	border: 1px solid #263238;
 	font-size: 20px;
 	color: #fff;
 	line-height: 50px;
@@ -862,7 +863,7 @@ header .navbar.sticky-header{
 
 .blog-header-overlay a:hover{
 	background: none;
-	color: #1b91ef;
+	color: #263238;
 }
 
 .blog-header figure{
@@ -906,7 +907,7 @@ header .navbar.sticky-header{
 }
 
 .blog-footer ul li i{
-	color: #1b91ef;
+	color: #263238;
 	margin-right: 6px;
 }
 
@@ -958,8 +959,8 @@ header .navbar.sticky-header{
 .btn-contact{
 	background: none;
 	display: inline-block;
-    border: 1px solid #1b91ef;
-    color: #1b91ef;
+    border: 1px solid #263238;
+    color: #263238;
     padding: 12px 30px;
 	cursor: pointer;
 	margin-top: 20px;
@@ -967,7 +968,7 @@ header .navbar.sticky-header{
 }
 
 .btn-contact:hover{
-	background: #1b91ef;
+	background: #263238;
 	color: #fff;
 }
 
@@ -995,8 +996,8 @@ header .navbar.sticky-header{
     left: -1px;
     right: -1px;
     bottom: -1px;
-    border-top: 1px solid #1b91ef;
-    border-bottom: 1px solid #1b91ef;
+    border-top: 1px solid #263238;
+    border-bottom: 1px solid #263238;
     transform: scale(0,1);
     transition: all 0.6s;
 }
@@ -1009,8 +1010,8 @@ header .navbar.sticky-header{
     left: -1px;
     right: -1px;
     bottom: -1px;
-    border-left: 1px solid #1b91ef;
-    border-right: 1px solid #1b91ef;
+    border-left: 1px solid #263238;
+    border-right: 1px solid #263238;
     transform: scale(1,0);
     transition: all 0.6s;
 }
@@ -1036,7 +1037,7 @@ header .navbar.sticky-header{
 	width: 40px;
 	margin-left: -20px;
 	height: 3px;
-	background: #1b91ef;
+	background: #263238;
 	position: absolute;
 	left: 50%;
 	bottom: 0;
@@ -1069,7 +1070,7 @@ header .navbar.sticky-header{
 }
 
 .footer-logo h1 span{
-	color: #1b91ef;
+	color: #263238;
 }
 
 .footer-about{
@@ -1095,16 +1096,16 @@ header .navbar.sticky-header{
 	font-size: 22px;
 	background: white;
 	line-height: 60px;
-	color: #1b91ef;
+	color: #263238;
 	border-radius: 50%;
-	border: 1px solid #1b91ef;
+	border: 1px solid #263238;
 	margin: 0 6px;
 	transition: all 0.5s;
 }
 
 .footer-social a:hover{
-	background: #1b91ef;
-	border-color: #1b91ef;
+	background: #263238;
+	border-color: #263238;
 	color: white;
 }
 
@@ -1140,7 +1141,7 @@ header .navbar.sticky-header{
 }
 
 .footer-copyright p a:hover{
-	color: #1b91ef;
+	color: #263238;
 }
 
 /*********************************/
