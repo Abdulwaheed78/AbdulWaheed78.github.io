@@ -201,7 +201,7 @@ projects.forEach((project, index) => {
                 <div class="card-body">
                     <h5 class="card-title">${project.title}</h5>
 
-                    <span class="badge badge-secondary p-1">
+                    <span class="badge badge-success p-1">
                         ${project.category}
                     </span>
 
