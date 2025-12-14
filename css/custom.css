@@ -1596,3 +1596,29 @@ header .navbar.sticky-header {
 	border: 1px solid rgba(0, 0, 0, .125);
 	border-radius: 1rem !important;
 }
+
+/* experience */
+.resume-card {
+	border: 1px solid #dee2e6;
+	/* default light border */
+	border-radius: 8px;
+	padding: 20px;
+	transition: border-color 0.25s ease-in-out;
+}
+
+.resume-card:hover {
+	border-color: #0a0a0a;
+	/* Bootstrap primary blue */
+}
+
+.resume-card h6 {
+	font-weight: 600;
+}
+
+.resume-card p {
+	margin-bottom: 6px;
+}
+
+.resume-row {
+	row-gap: 20px;
+}

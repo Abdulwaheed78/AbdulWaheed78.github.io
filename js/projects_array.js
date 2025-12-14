@@ -194,9 +194,10 @@ const container = document.getElementById("projectsContainer");
 
 projects.forEach((project, index) => {
     container.innerHTML += `
-        <div class="col-md-4 mb-4 project-card"
+        <div class="col-md-4 mb-4 project-card wow fadeInUp"
+             data-wow-delay="${index * 0.15}s"
              data-category="${project.category}">
-             
+
             <div class="card h-100 rounded-5">
                 <div class="card-body">
                     <h5 class="card-title">${project.title}</h5>
@@ -216,6 +217,7 @@ projects.forEach((project, index) => {
         </div>
     `;
 });
+
 
 const filterButtons = document.querySelectorAll("[data-filter]");
 const projectCards = document.querySelectorAll(".project-card");
