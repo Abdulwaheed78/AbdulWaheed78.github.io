@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts css-->
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash%7CRoboto:300,400,400i,500,500i,700,700i,900"
+        rel="stylesheet">
+
+    <!-- Bootstrap (already used in your site) -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- Font Awesome icon css-->
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="css/flaticon.css" rel="stylesheet" media="screen">
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!-- Animated css -->
+    <link href="css/animate.css" rel="stylesheet">
+    <!-- Magnific Popup CSS -->
+    <link href="css/magnific-popup.css" rel="stylesheet">
+    <!-- Animation Headline CSS -->
+    <link href="css/animation-headline.css" rel="stylesheet">
+    <!-- Slick nav css -->
+    <link rel="stylesheet" href="css/slicknav.css">
+    <!-- Main custom css -->
+    <link href="css/custom.css" rel="stylesheet" media="screen">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+
+    <style>
+        /* ================= BASE ================= */
+        body {
+            font-family: Inter, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+        }
+
+        pre {
+            display: block !important;
+            font-size: 100% !important;
+            color: #f2f6fa !important;
+        }
+
+        .practice-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 170px 20px 80px;
+        }
+
+        /* ================= HEADER ================= */
+        .practice-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .practice-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .practice-header p {
+            color: #64748b;
+        }
+
+        /* ================= FILTER ================= */
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-bar select {
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        /* ================= QUESTION BLOCK ================= */
+        .question-block {
+            margin-bottom: 60px;
+        }
+
+        .question-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .question-meta {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .question-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 16px;
+        }
+
+        /* ================= ACTION BUTTONS ================= */
+        .action-buttons {
+            margin-bottom: 12px;
+        }
+
+        .action-buttons button {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 6px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .action-buttons button:hover {
+            background: #f1f5f9;
+        }
+
+        /* ================= CODE BOX ================= */
+        .code-box {
+            position: relative;
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 14px;
+            color: #e5e7eb;
+            overflow-x: auto;
+        }
+
+        .pagination-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 30px 0;
+        }
+
+        .page-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid #dee2e6;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .page-circle:hover:not(:disabled) {
+            background: #090909;
+            color: #fff;
+            border-color: #0f0f0f;
+        }
+
+        .page-circle:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            font-weight: 500;
+            color: #0c0c0c;
+            white-space: nowrap;
+        }
+
+        /* copy code and run button */
+        .code-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .code-btn {
+            background: transparent;
+            border: 1px solid #334155;
+            color: #e5e7eb;
+            padding: 4px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .code-btn:hover {
+            background: #1e293b;
+        }
+
+        .run-btn {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+
+        .run-btn:hover {
+            background: #22c55e;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER (UNCHANGED) ================= -->
+    <header class="header">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" id="main-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <h1><span>Abdul</span> Waheed</h1>
+                </a>
+
+                <ul class="navbar-nav ml-auto" id="main-menu">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#resume">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#portfolio">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/practice.html">Prepare</a></li>
+                </ul>
+
+                <div class="navbar-toggle"></div>
+                <div id="responsive-menu"></div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ================= PRACTICE CONTENT ================= -->
+    <div class="practice-container">
+
+        <div class="practice-header">
+            <h1>Interview Practice</h1>
+            <p>Curated PHP & Java interview questions with explanations</p>
+        </div>
+
+        <div class="filter-bar">
+            <select id="languageFilter">
+                <option value="all">All Languages</option>
+                <option value="php">PHP</option>
+                <option value="java">Java</option>
+            </select>
+        </div>
+
+        <div id="questionsArea"></div>
+        <div id="paginationBottom" class="pagination-bar"></div>
+
+
+    </div>
+
+    <!-- Footer Starts -->
+    <footer class="footer-dark py-4">
+        <div class="container">
+            <div class="row text-center">
+
+                <div class="col-12 section-title">
+                    <h2 class="footer-name">
+                        Abdul <span>Waheed</span>
+                    </h2>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <p class="footer-role">
+                        FullStack Developer · Backend Specialist
+                    </p>
+                    <p class="footer-info">
+                        Open to freelance projects, full-time opportunities, and long-term collaborations.
+                    </p>
+                </div>
+
+                <div class="col-12">
+                    <p class="footer-copy">
+                        © <span id="year"></span> Abdul Waheed Chaudhary. All rights reserved.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="questions.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const PER_PAGE = 3;
+        let page = 0;
+        let filteredQuestions = [];
+
+        const filterSelect = document.getElementById("languageFilter");
+
+        /* ================= HELPERS ================= */
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/[&<>"']/g, m =>
+                ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m])
+            );
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+        }
+
+        /* ================= FILTER ================= */
+        function applyFilter() {
+            const lang = filterSelect.value;
+            filteredQuestions = lang === "all"
+                ? QUESTIONS
+                : QUESTIONS.filter(q => q.language === lang);
+
+            page = 0;
+            render();
+        }
+
+        filterSelect.addEventListener("change", applyFilter);
+
+        /* ================= RENDER QUESTIONS ================= */
+        function render() {
+            const area = document.getElementById("questionsArea");
+            area.innerHTML = "";
+
+            if (!filteredQuestions.length) {
+                area.innerHTML = `<p class="text-muted">No questions found.</p>`;
+                updatePagination();
+                return;
+            }
+
+            const start = page * PER_PAGE;
+            const end = start + PER_PAGE;
+
+            filteredQuestions.slice(start, end).forEach(q => {
+                area.innerHTML += `
+                <div class="question-block">
+                    <div class="question-title">${q.id}. ${q.title}</div>
+                    <div class="question-meta badge badge-primary text-white">
+                        ${(q.language || "N/A").toUpperCase()}
+                    </div>
+                    <div class="question-desc">${q.desc}</div>
+                    <div class="code-box">
+                        <div class="code-actions">
+                            <button class="code-btn" onclick="copyText(\`${escapeHtml(q.code)}\`)">
+                                Copy
+                            </button>
+                            <button class="code-btn run-btn" onclick="runPHP(\`${escapeHtml(q.code)}\`)">
+                                Run
+                            </button>
+                        </div>
+                
+                        <pre><code class="language-php">${escapeHtml(q.code)}</code></pre>
+                    </div>
+                </div>`;
+            });
+            if (window.Prism) {
+                Prism.highlightAll();
+            }
+            updatePagination();
+        }
+
+        function runPHP(code) {
+                const form = document.createElement("form");
+                form.method = "POST";
+                form.action = "https://onecompiler.com/php";
+                form.target = "_blank";
+
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "code";
+                input.value = code;
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+            }
+
+
+        /* ================= PAGINATION ================= */
+        function updatePagination() {
+            renderPrevNext("paginationBottom");
+        }
+        function renderPrevNext(containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";
+
+            const totalPages = Math.ceil(filteredQuestions.length / PER_PAGE);
+            if (totalPages <= 1) return;
+
+            container.className = "pagination-wrapper";
+
+            /* ---------- PREV BUTTON ---------- */
+            const prevBtn = document.createElement("button");
+            prevBtn.className = "page-circle";
+            prevBtn.innerHTML = `<i class="bi bi-chevron-left"></i>`;
+            prevBtn.disabled = page === 0;
+            prevBtn.onclick = () => {
+                if (page > 0) {
+                    page--;
+                    render();
+                }
+            };
+
+            /* ---------- PAGE INFO ---------- */
+            const pageInfo = document.createElement("div");
+            pageInfo.className = "page-info";
+            pageInfo.textContent = `Page ${page + 1} of ${totalPages}`;
+
+            /* ---------- NEXT BUTTON ---------- */
+            const nextBtn = document.createElement("button");
+            nextBtn.className = "page-circle";
+            nextBtn.innerHTML = `<i class="bi bi-chevron-right"></i>`;
+            nextBtn.disabled = page >= totalPages - 1;
+            nextBtn.onclick = () => {
+                if (page + 1 < totalPages) {
+                    page++;
+                    render();
+                }
+            };
+
+            container.appendChild(prevBtn);
+            container.appendChild(pageInfo);
+            container.appendChild(nextBtn);
+        }
+
+        /* ================= INIT ================= */
+        filteredQuestions = QUESTIONS;
+        render();
+    </script>
+
+</body>
+
+</html>

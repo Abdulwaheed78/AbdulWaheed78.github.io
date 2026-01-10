@@ -1,0 +1,170 @@
+const QUESTIONS = [
+    {
+        "id": 1,
+        "language": "php",
+        "difficulty": "easy",
+        "title": "Print Even Numbers in Array",
+        "desc": "Print all even numbers from an array without using built-in functions",
+        "code": "<?php\r\n$arr = [1,2,3,4,5,6];\r\nfor ($i = 0; $i < count($arr); $i++) {\r\n    if ($arr[$i] % 2 == 0) {\r\n        echo $arr[$i] . ' ';\r\n    }\r\n}\r\n?>"
+    },
+    {
+        "id": 2,
+        "language": "php",
+        "difficulty": "easy",
+        "title": "Print Odd Numbers in Array",
+        "desc": "Print all odd numbers from an array",
+        "code": "<?php\r\n$arr = [1,2,3,4,5,6];\r\nfor ($i = 0; $i < count($arr); $i++) {\r\n    if ($arr[$i] % 2 != 0) {\r\n        echo $arr[$i] . ' ';\r\n    }\r\n}\r\n?>"
+    },
+    {
+        "id": 3,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Check Prime Number",
+        "desc": "Check if a number is prime using loops",
+        "code": "<?php\r\n$n = 7;\r\n$isPrime = true;\r\nif ($n <= 1) $isPrime = false;\r\nfor ($i = 2; $i <= $n / 2; $i++) {\r\n    if ($n % $i == 0) {\r\n        $isPrime = false;\r\n        break;\r\n    }\r\n}\r\necho $isPrime ? 'Prime' : 'Not Prime';\r\n?>"
+    },
+    {
+        "id": 4,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Reverse String Without Builtin",
+        "desc": "Reverse a string without using strrev",
+        "code": "<?php\r\n$str = 'hello';\r\n$rev = '';\r\nfor ($i = strlen($str)-1; $i >= 0; $i--) {\r\n    $rev .= $str[$i];\r\n}\r\necho $rev;\r\n?>"
+    },
+    {
+        "id": 5,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Factorial Using Loop",
+        "desc": "Find factorial using loop",
+        "code": "<?php\r\n$n = 5;\r\n$f = 1;\r\nfor ($i = 1; $i <= $n; $i++) {\r\n    $f *= $i;\r\n}\r\necho $f;\r\n?>"
+    },
+    {
+        "id": 6,
+        "language": "php",
+        "difficulty": "hard",
+        "title": "Factorial Using Recursion",
+        "desc": "Find factorial using recursion",
+        "code": "<?php\r\nfunction fact($n) {\r\n    if ($n == 0) return 1;\r\n    return $n * fact($n - 1);\r\n}\r\necho fact(5);\r\n?>"
+    },
+    {
+        "id": 7,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Check Palindrome String",
+        "desc": "Check if a string is palindrome",
+        "code": "<?php\r\n$str = 'madam';\r\n$rev = '';\r\nfor ($i = strlen($str)-1; $i >= 0; $i--) {\r\n    $rev .= $str[$i];\r\n}\r\necho ($str == $rev) ? 'Palindrome' : 'Not Palindrome';\r\n?>"
+    },
+    {
+        "id": 8,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Find Duplicate Elements",
+        "desc": "Find duplicate elements in array",
+        "code": "<?php\r\n$arr = [1,2,3,2,4,1];\r\nfor ($i = 0; $i < count($arr); $i++) {\r\n    for ($j = $i + 1; $j < count($arr); $j++) {\r\n        if ($arr[$i] == $arr[$j]) {\r\n            echo $arr[$i] . ' ';\r\n            break;\r\n        }\r\n    }\r\n}\r\n?>"
+    },
+    {
+        "id": 9,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Find Max and Min in Array",
+        "desc": "Find maximum and minimum without built-in functions",
+        "code": "<?php\r\n$arr = [4,2,9,1];\r\n$max = $min = $arr[0];\r\nfor ($i = 1; $i < count($arr); $i++) {\r\n    if ($arr[$i] > $max) $max = $arr[$i];\r\n    if ($arr[$i] < $min) $min = $arr[$i];\r\n}\r\necho 'Max=' . $max . ' Min=' . $min;\r\n?>"
+    },
+    {
+        "id": 10,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Sort Array Without sort",
+        "desc": "Sort array in ascending order manually",
+        "code": "<?php\r\n$arr = [3,1,4,2];\r\n$n = count($arr);\r\nfor ($i = 0; $i < $n; $i++) {\r\n    for ($j = $i+1; $j < $n; $j++) {\r\n        if ($arr[$i] > $arr[$j]) {\r\n            $temp = $arr[$i];\r\n            $arr[$i] = $arr[$j];\r\n            $arr[$j] = $temp;\r\n        }\r\n    }\r\n}\r\nforeach ($arr as $v) echo $v . ' ';\r\n?>"
+    },
+    {
+        "id": 11,
+        "language": "php",
+        "difficulty": "easy",
+        "title": "Mini Calculator",
+        "desc": "Implement calculator using switch",
+        "code": "<?php\r\n$a = 10; $b = 5; $op = '+';\r\nswitch ($op) {\r\n    case '+': echo $a + $b; break;\r\n    case '-': echo $a - $b; break;\r\n    case '*': echo $a * $b; break;\r\n    case '/': echo $a / $b; break;\r\n}\r\n?>"
+    },
+    {
+        "id": 12,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Character Frequency",
+        "desc": "Count frequency of characters in string",
+        "code": "<?php\r\n$str = 'hello';\r\nfor ($i = 0; $i < strlen($str); $i++) {\r\n    $count = 0;\r\n    for ($j = 0; $j < strlen($str); $j++) {\r\n        if ($str[$i] == $str[$j]) $count++;\r\n    }\r\n    echo $str[$i] . '=' . $count . ' ';\r\n}\r\n?>"
+    },
+    {
+        "id": 13,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Pair Sum in Array",
+        "desc": "Find pairs with given sum",
+        "code": "<?php\r\n$arr = [1,4,5,6];\r\n$sum = 7;\r\nfor ($i = 0; $i < count($arr); $i++) {\r\n    for ($j = $i+1; $j < count($arr); $j++) {\r\n        if ($arr[$i] + $arr[$j] == $sum) {\r\n            echo $arr[$i] . ',' . $arr[$j] . ' ';\r\n        }\r\n    }\r\n}\r\n?>"
+    },
+    {
+        "id": 14,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Fibonacci Series",
+        "desc": "Fibonacci series using loop",
+        "code": "<?php\r\n$n = 6;\r\n$a = 0; $b = 1;\r\nfor ($i = 0; $i < $n; $i++) {\r\n    echo $a . ' ';\r\n    $c = $a + $b;\r\n    $a = $b;\r\n    $b = $c;\r\n}\r\n?>"
+    },
+    {
+        "id": 15,
+        "language": "php",
+        "difficulty": "easy",
+        "title": "Leap Year Check",
+        "desc": "Check leap year logic",
+        "code": "<?php\r\n$year = 2024;\r\nif (($year % 4 == 0 && $year % 100 != 0) || $year % 400 == 0)\r\n    echo 'Leap Year';\r\nelse\r\n    echo 'Not Leap Year';\r\n?>"
+    },
+    {
+        "id": 16,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Find Missing Number",
+        "desc": "Find missing number in sequence",
+        "code": "<?php\r\n$arr = [1,2,4,5];\r\n$n = 5;\r\n$total = $n * ($n + 1) / 2;\r\n$sum = 0;\r\nforeach ($arr as $v) $sum += $v;\r\necho $total - $sum;\r\n?>"
+    },
+    {
+        "id": 17,
+        "language": "php",
+        "difficulty": "hard",
+        "title": "Number to Words",
+        "desc": "Convert number to words (basic)",
+        "code": "<?php\r\n$n = 5;\r\n$words = ['Zero','One','Two','Three','Four','Five'];\r\necho $words[$n];\r\n?>"
+    },
+    {
+        "id": 18,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Common Elements in Arrays",
+        "desc": "Find common elements in two arrays",
+        "code": "<?php\r\n$a = [1,2,3];\r\n$b = [2,3,4];\r\nfor ($i = 0; $i < count($a); $i++) {\r\n    for ($j = 0; $j < count($b); $j++) {\r\n        if ($a[$i] == $b[$j]) echo $a[$i] . ' ';\r\n    }\r\n}\r\n?>"
+    },
+    {
+        "id": 19,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Merge Sorted Arrays",
+        "desc": "Merge two sorted arrays",
+        "code": "<?php\r\n$a = [1,3,5];\r\n$b = [2,4,6];\r\n$i=$j=0;\r\nwhile ($i<count($a) && $j<count($b)) {\r\n    if ($a[$i] < $b[$j]) echo $a[$i++] . ' ';\r\n    else echo $b[$j++] . ' ';\r\n}\r\n?>"
+    },
+    {
+        "id": 20,
+        "language": "php",
+        "difficulty": "medium",
+        "title": "Check Anagram",
+        "desc": "Check if two strings are anagrams",
+        "code": "<?php\r\n$s1='listen'; $s2='silent';\r\nif (strlen($s1)!=strlen($s2)) { echo 'No'; exit; }\r\nfor ($i=0;$i<strlen($s1);$i++) {\r\n    if (substr_count($s2,$s1[$i]) != substr_count($s1,$s1[$i])) {\r\n        echo 'No'; exit;\r\n    }\r\n}\r\necho 'Yes';\r\n?>"
+    },
+    {
+        "id": 21,
+        "language": "php",
+        "difficulty": "hard",
+        "title": "Movement Coordinates",
+        "desc": "Find final coordinates after movements",
+        "code": "<?php\r\n$x=$y=0;\r\n$a=3;$b=4;$c=1;$d=2;\r\n$x = $a - $c;\r\n$y = $b - $d;\r\necho '(' . $x . ',' . $y . ')';\r\n?>"
+    }
+];
