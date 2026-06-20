@@ -111,6 +111,47 @@
             margin-bottom: 16px;
         }
 
+        .answer-box {
+            margin-top: 14px;
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+        }
+
+        .answer-box h4 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .answer-box p {
+            margin-bottom: 0;
+            color: #334155;
+            line-height: 1.7;
+        }
+
+        .example-box {
+            margin-top: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+        }
+
+        .example-box h4 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #9a3412;
+        }
+
+        .example-box pre {
+            margin-bottom: 0;
+            color: #7c2d12 !important;
+        }
+
         /* ================= ACTION BUTTONS ================= */
         .action-buttons {
             margin-bottom: 12px;
@@ -250,14 +291,24 @@
 
         <div class="practice-header">
             <h1>Interview Practice</h1>
-            <p>Curated PHP & Java interview questions with explanations</p>
+            <p>Curated backend interview questions for PHP, Laravel, MySQL, Java, and related backend skills</p>
         </div>
 
         <div class="filter-bar">
             <select id="languageFilter">
-                <option value="all">All Languages</option>
+                <option value="all" selected>All Topics</option>
                 <option value="php">PHP</option>
+                <option value="laravel">Laravel</option>
+                <option value="sql">SQL</option>
+                <option value="oop">OOP</option>
+                <option value="mysql">MySQL</option>
+                <option value="mysql-performance">MySQL Performance</option>
                 <option value="java">Java</option>
+                <option value="redis">Redis</option>
+                <option value="api">API</option>
+                <option value="api-security">API Security</option>
+                <option value="git">Git</option>
+                <option value="eloquent">Eloquent</option>
             </select>
         </div>
 
@@ -297,13 +348,13 @@
         </div>
     </footer>
 
-    <script src="questions.js"></script>
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
 
         const PER_PAGE = 3;
         let page = 0;
         let filteredQuestions = [];
+        let QUESTIONS = [];
 
         const filterSelect = document.getElementById("languageFilter");
 
@@ -326,6 +377,8 @@
                 ? QUESTIONS
                 : QUESTIONS.filter(q => q.language === lang);
 
+            filteredQuestions = filteredQuestions.slice().sort((a, b) => b.id - a.id);
+
             page = 0;
             render();
         }
@@ -347,6 +400,18 @@
             const end = start + PER_PAGE;
 
             filteredQuestions.slice(start, end).forEach(q => {
+                const answerHtml = q.answer ? `
+                    <div class="answer-box">
+                        <h4>Answer</h4>
+                        <p>${escapeHtml(q.answer).replace(/\n/g, '<br>')}</p>
+                    </div>` : "";
+
+                const exampleHtml = q.example ? `
+                    <div class="example-box">
+                        <h4>Example</h4>
+                        <pre><code>${escapeHtml(q.example)}</code></pre>
+                    </div>` : "";
+
                 area.innerHTML += `
                 <div class="question-block">
                     <div class="question-title">${q.id}. ${q.title}</div>
@@ -354,17 +419,19 @@
                         ${(q.language || "N/A").toUpperCase()}
                     </div>
                     <div class="question-desc">${q.desc}</div>
+                    ${answerHtml}
+                    ${exampleHtml}
                     <div class="code-box">
                         <div class="code-actions">
-                            <button class="code-btn" onclick="copyText(\`${escapeHtml(q.code)}\`)">
+                            <button class="code-btn" onclick="copyText(\`${escapeHtml(q.code || q.example || q.answer || '')}\`)">
                                 Copy
                             </button>
-                            <button class="code-btn run-btn" onclick="runPHP(\`${escapeHtml(q.code)}\`)">
+                            <button class="code-btn run-btn" onclick="runCode(\`${escapeHtml(q.code || q.example || '')}\`, '${q.language || ''}')">
                                 Run
                             </button>
                         </div>
                 
-                        <pre><code class="language-php">${escapeHtml(q.code)}</code></pre>
+                        <pre><code class="language-${q.language === 'java' ? 'java' : 'php'}">${escapeHtml(q.code || q.example || '')}</code></pre>
                     </div>
                 </div>`;
             });
@@ -374,22 +441,30 @@
             updatePagination();
         }
 
-        function runPHP(code) {
-                const form = document.createElement("form");
-                form.method = "POST";
-                form.action = "https://onecompiler.com/php";
-                form.target = "_blank";
+        function runCode(code, lang) {
+            if (!code) return;
+            const targets = {
+                php: "https://onecompiler.com/php",
+                java: "https://onecompiler.com/java",
+                mysql: "https://onecompiler.com/mysql",
+                javascript: "https://onecompiler.com/javascript",
+            };
+            const url = targets[lang] || targets.php;
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = url;
+            form.target = "_blank";
 
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = "code";
-                input.value = code;
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "code";
+            input.value = code;
 
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-                document.body.removeChild(form);
-            }
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+        }
 
 
         /* ================= PAGINATION ================= */
@@ -440,8 +515,17 @@
         }
 
         /* ================= INIT ================= */
-        filteredQuestions = QUESTIONS;
-        render();
+        fetch("questions.json")
+            .then(response => response.json())
+            .then(data => {
+                QUESTIONS = data.slice().sort((a, b) => b.id - a.id);
+                filteredQuestions = QUESTIONS;
+                render();
+            })
+            .catch(() => {
+                document.getElementById("questionsArea").innerHTML =
+                    `<p class="text-danger">Unable to load questions.json. Please run this page through a local server.</p>`;
+            });
     </script>
 
 </body>

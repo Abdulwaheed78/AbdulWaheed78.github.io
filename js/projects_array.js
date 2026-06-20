@@ -192,7 +192,15 @@ const projects = [
 
 const container = document.getElementById("projectsContainer");
 
+const badgeMap = {
+    "PHP Core": ["PHP", "MySQL"],
+    "Laravel": ["Laravel", "API", "MySQL"],
+    "Python": ["Python", "Django"],
+    "WordPress": ["WordPress", "PHP"]
+};
+
 projects.forEach((project, index) => {
+    const badges = badgeMap[project.category] || [];
     container.innerHTML += `
         <div class="col-md-4 mb-4 project-card wow fadeInUp"
              data-wow-delay="${index * 0.15}s"
@@ -205,6 +213,10 @@ projects.forEach((project, index) => {
                     <span class="badge badge-success p-1">
                         ${project.category}
                     </span>
+
+                    <div class="project-mini-tags mt-2 mb-2">
+                        ${badges.map(tag => `<span class="project-tag">${tag}</span>`).join("")}
+                    </div>
 
                     <p class="card-text mt-2">${project.shortDesc}</p>
 

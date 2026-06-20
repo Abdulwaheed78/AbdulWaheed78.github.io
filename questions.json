@@ -166,5 +166,2024 @@
         "title": "Movement Coordinates",
         "desc": "Find final coordinates after movements",
         "code": "<?php\r\n$x=$y=0;\r\n$a=3;$b=4;$c=1;$d=2;\r\n$x = $a - $c;\r\n$y = $b - $d;\r\necho '(' . $x . ',' . $y . ')';\r\n?>"
+    },
+    {
+        "id": 22,
+        "language": "laravel",
+        "difficulty": "easy",
+        "title": "Route to Controller",
+        "desc": "Create a route that sends requests to a controller method",
+        "code": "<?php\nuse App\\Http\\Controllers\\HomeController;\nRoute::get('/home', [HomeController::class, 'index']);"
+    },
+    {
+        "id": 23,
+        "language": "laravel",
+        "difficulty": "easy",
+        "title": "Basic Controller",
+        "desc": "Create a controller method that returns a view",
+        "code": "<?php\nnamespace App\\Http\\Controllers;\nclass UserController extends Controller {\n    public function index() { return view('users.index'); }\n}"
+    },
+    {
+        "id": 24,
+        "language": "laravel",
+        "difficulty": "easy",
+        "title": "Blade Foreach Loop",
+        "desc": "Display a list using Blade",
+        "code": "@foreach ($users as $user)\n    {{ $user->name }}\n@endforeach"
+    },
+    {
+        "id": 25,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Eloquent Where Query",
+        "desc": "Fetch active users using Eloquent",
+        "code": "<?php\n$users = User::where('status', 'active')->orderBy('id', 'desc')->get();"
+    },
+    {
+        "id": 26,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Eloquent Relationships",
+        "desc": "Define a one-to-many relationship",
+        "code": "<?php\nclass User extends Model {\n    public function posts() { return $this->hasMany(Post::class); }\n}"
+    },
+    {
+        "id": 27,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Validation in Controller",
+        "desc": "Validate request data before storing",
+        "code": "<?php\n$request->validate([\n    'name' => 'required|string|max:255',\n    'email' => 'required|email|unique:users,email'\n]);"
+    },
+    {
+        "id": 28,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Mass Assignment",
+        "desc": "Use fillable fields safely",
+        "code": "<?php\nclass User extends Model {\n    protected $fillable = ['name', 'email', 'password'];\n}"
+    },
+    {
+        "id": 29,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Middleware Protection",
+        "desc": "Protect a route with auth middleware",
+        "code": "<?php\nRoute::get('/dashboard', function () {\n    return view('dashboard');\n})->middleware('auth');"
+    },
+    {
+        "id": 30,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "API Resource",
+        "desc": "Return clean JSON using an API resource",
+        "code": "<?php\nreturn new UserResource($user);"
+    },
+    {
+        "id": 31,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Transaction Handling",
+        "desc": "Use a database transaction for safe writes",
+        "code": "<?php\nDB::beginTransaction();\ntry { Order::create($data); DB::commit(); } catch (\\Exception $e) { DB::rollBack(); }"
+    },
+    {
+        "id": 32,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Job Dispatch",
+        "desc": "Push work to a queue job",
+        "code": "<?php\ndispatch(new SendInvoiceJob($invoice));"
+    },
+    {
+        "id": 33,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Pagination",
+        "desc": "Paginate a large result set",
+        "code": "<?php\n$users = User::paginate(15);"
+    },
+    {
+        "id": 34,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Form Request",
+        "desc": "Move validation into a form request",
+        "code": "<?php\nclass StoreUserRequest extends FormRequest {\n    public function rules() { return ['name' => 'required']; }\n}"
+    },
+    {
+        "id": 35,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "N+1 Problem",
+        "desc": "Solve N+1 using eager loading",
+        "code": "<?php\n$posts = Post::with('user')->get();"
+    },
+    {
+        "id": 36,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Authentication Check",
+        "desc": "Check the current logged-in user",
+        "code": "<?php\nif (auth()->check()) { $user = auth()->user(); }"
+    },
+    {
+        "id": 37,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Collection Filter",
+        "desc": "Filter a Laravel collection",
+        "code": "<?php\n$active = collect($users)->filter(fn($u) => $u['status'] === 'active');"
+    },
+    {
+        "id": 38,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Cache Remember",
+        "desc": "Cache expensive database results",
+        "code": "<?php\n$users = Cache::remember('users_list', 600, function () { return User::all(); });"
+    },
+    {
+        "id": 39,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Soft Deletes",
+        "desc": "Use soft deletes in a model",
+        "code": "<?php\nuse Illuminate\\Database\\Eloquent\\SoftDeletes;\nclass Post extends Model { use SoftDeletes; }"
+    },
+    {
+        "id": 40,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Observer Example",
+        "desc": "Trigger logic when a model is created",
+        "code": "<?php\nclass UserObserver { public function created(User $user) { /* send welcome mail */ } }"
+    },
+    {
+        "id": 41,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Policy Authorization",
+        "desc": "Authorize access with a policy",
+        "code": "<?php\n$this->authorize('update', $post);"
+    },
+    {
+        "id": 42,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Laravel Seeder",
+        "desc": "Insert fake data using a seeder",
+        "code": "<?php\nUser::factory()->count(10)->create();"
+    },
+    {
+        "id": 43,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Accessors and Mutators",
+        "desc": "Format model data automatically",
+        "code": "<?php\npublic function getNameAttribute($value) { return ucfirst($value); }"
+    },
+    {
+        "id": 44,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "API Authentication",
+        "desc": "Protect API routes using sanctum",
+        "code": "<?php\nRoute::middleware('auth:sanctum')->get('/user', fn (Request $request) => $request->user());"
+    },
+    {
+        "id": 45,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Env Configuration",
+        "desc": "Read config values from env safely",
+        "code": "<?php\n$driver = config('database.default');"
+    },
+    {
+        "id": 46,
+        "language": "mysql",
+        "difficulty": "easy",
+        "title": "Select All Users",
+        "desc": "Basic SELECT query for all rows",
+        "code": "SELECT * FROM users;"
+    },
+    {
+        "id": 47,
+        "language": "mysql",
+        "difficulty": "easy",
+        "title": "Where Clause",
+        "desc": "Find active users using WHERE",
+        "code": "SELECT id, name FROM users WHERE status = 'active';"
+    },
+    {
+        "id": 48,
+        "language": "mysql",
+        "difficulty": "easy",
+        "title": "Order By",
+        "desc": "Sort records by latest first",
+        "code": "SELECT * FROM orders ORDER BY created_at DESC;"
+    },
+    {
+        "id": 49,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Group By Count",
+        "desc": "Count orders per user",
+        "code": "SELECT user_id, COUNT(*) AS total_orders FROM orders GROUP BY user_id;"
+    },
+    {
+        "id": 50,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Join Two Tables",
+        "desc": "Get users with their order data",
+        "code": "SELECT u.name, o.id FROM users u INNER JOIN orders o ON u.id = o.user_id;"
+    },
+    {
+        "id": 51,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Left Join",
+        "desc": "Get all users even if they have no orders",
+        "code": "SELECT u.name, o.id FROM users u LEFT JOIN orders o ON u.id = o.user_id;"
+    },
+    {
+        "id": 52,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Having Clause",
+        "desc": "Filter grouped data with HAVING",
+        "code": "SELECT user_id, COUNT(*) total FROM orders GROUP BY user_id HAVING total > 5;"
+    },
+    {
+        "id": 53,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Subquery",
+        "desc": "Find users who placed the highest order amount",
+        "code": "SELECT * FROM orders WHERE amount = (SELECT MAX(amount) FROM orders);"
+    },
+    {
+        "id": 54,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Index Usage",
+        "desc": "Create an index on a frequently searched column",
+        "code": "CREATE INDEX idx_users_email ON users(email);"
+    },
+    {
+        "id": 55,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Update Query",
+        "desc": "Update user status safely",
+        "code": "UPDATE users SET status = 'inactive' WHERE last_login < '2024-01-01';"
+    },
+    {
+        "id": 56,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Delete Query",
+        "desc": "Delete old records using a condition",
+        "code": "DELETE FROM logs WHERE created_at < NOW() - INTERVAL 30 DAY;"
+    },
+    {
+        "id": 57,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Transaction",
+        "desc": "Use transaction with commit and rollback",
+        "code": "START TRANSACTION; UPDATE accounts SET balance = balance - 100 WHERE id = 1; COMMIT;"
+    },
+    {
+        "id": 58,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Primary Key",
+        "desc": "Create a table with primary key",
+        "code": "CREATE TABLE users (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100));"
+    },
+    {
+        "id": 59,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Foreign Key",
+        "desc": "Create a foreign key relationship",
+        "code": "ALTER TABLE orders ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id);"
+    },
+    {
+        "id": 60,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Duplicate Removal",
+        "desc": "Find duplicate emails in a table",
+        "code": "SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1;"
+    },
+    {
+        "id": 61,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Null Handling",
+        "desc": "Replace null values with default text",
+        "code": "SELECT COALESCE(phone, 'N/A') AS phone FROM users;"
+    },
+    {
+        "id": 62,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Case Statement",
+        "desc": "Convert numeric status into text",
+        "code": "SELECT name, CASE WHEN status = 1 THEN 'Active' ELSE 'Inactive' END AS state FROM users;"
+    },
+    {
+        "id": 63,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Pagination Query",
+        "desc": "Return only 10 rows with offset",
+        "code": "SELECT * FROM users LIMIT 10 OFFSET 20;"
+    },
+    {
+        "id": 64,
+        "language": "mysql",
+        "difficulty": "medium",
+        "title": "Explain Plan",
+        "desc": "Inspect query performance",
+        "code": "EXPLAIN SELECT * FROM users WHERE email = 'test@example.com';"
+    },
+    {
+        "id": 65,
+        "language": "mysql",
+        "difficulty": "hard",
+        "title": "Stored Procedure",
+        "desc": "Create a stored procedure skeleton",
+        "code": "DELIMITER $$ CREATE PROCEDURE getUsers() BEGIN SELECT * FROM users; END $$ DELIMITER ;"
+    },
+    {
+        "id": 66,
+        "language": "java",
+        "difficulty": "easy",
+        "title": "Hello World",
+        "desc": "Print a simple greeting",
+        "code": "public class Main { public static void main(String[] args) { System.out.println(\"Hello World\"); } }"
+    },
+    {
+        "id": 67,
+        "language": "java",
+        "difficulty": "easy",
+        "title": "Check Even Number",
+        "desc": "Check whether a number is even",
+        "code": "int n = 10; System.out.println(n % 2 == 0 ? \"Even\" : \"Odd\");"
+    },
+    {
+        "id": 68,
+        "language": "java",
+        "difficulty": "easy",
+        "title": "Array Loop",
+        "desc": "Print all array values",
+        "code": "int[] arr = {1,2,3}; for (int v : arr) System.out.println(v);"
+    },
+    {
+        "id": 69,
+        "language": "java",
+        "difficulty": "medium",
+        "title": "Factorial Using Loop",
+        "desc": "Compute factorial iteratively",
+        "code": "int n = 5, fact = 1; for (int i = 1; i <= n; i++) fact *= i; System.out.println(fact);"
+    },
+    {
+        "id": 70,
+        "language": "java",
+        "difficulty": "medium",
+        "title": "Palindrome Check",
+        "desc": "Check whether a string is a palindrome",
+        "code": "String s = \"madam\"; String rev = new StringBuilder(s).reverse().toString(); System.out.println(s.equals(rev));"
+    },
+    {
+        "id": 71,
+        "language": "java",
+        "difficulty": "medium",
+        "title": "Fibonacci Series",
+        "desc": "Print Fibonacci numbers",
+        "code": "int a = 0, b = 1; for (int i = 0; i < 6; i++) { System.out.print(a + \" \"); int c = a + b; a = b; b = c; }"
+    },
+    {
+        "id": 72,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "OOP Class Example",
+        "desc": "Create a simple class and object",
+        "code": "class User { String name; User(String name) { this.name = name; } }"
+    },
+    {
+        "id": 73,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Inheritance",
+        "desc": "Show parent and child class relationship",
+        "code": "class Animal { void sound() { System.out.println(\"Sound\"); } } class Dog extends Animal {}"
+    },
+    {
+        "id": 74,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Interface Example",
+        "desc": "Use an interface in Java",
+        "code": "interface Payment { void pay(); } class CardPayment implements Payment { public void pay() { System.out.println(\"Paid\"); } }"
+    },
+    {
+        "id": 75,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Exception Handling",
+        "desc": "Handle divide by zero safely",
+        "code": "try { int x = 10 / 0; } catch (ArithmeticException e) { System.out.println(\"Error\"); }"
+    },
+    {
+        "id": 76,
+        "language": "java",
+        "difficulty": "medium",
+        "title": "HashMap Usage",
+        "desc": "Store key value pairs using HashMap",
+        "code": "Map<String, Integer> map = new HashMap<>(); map.put(\"a\", 1); System.out.println(map.get(\"a\"));"
+    },
+    {
+        "id": 77,
+        "language": "java",
+        "difficulty": "medium",
+        "title": "ArrayList Example",
+        "desc": "Add and loop through values",
+        "code": "List<String> list = new ArrayList<>(); list.add(\"A\"); list.add(\"B\"); for (String s : list) System.out.println(s);"
+    },
+    {
+        "id": 78,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Thread Example",
+        "desc": "Create a simple thread",
+        "code": "new Thread(() -> System.out.println(\"Running\")).start();"
+    },
+    {
+        "id": 79,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "StringBuilder",
+        "desc": "Use StringBuilder for efficient string building",
+        "code": "StringBuilder sb = new StringBuilder(); sb.append(\"Hello\").append(\" World\"); System.out.println(sb.toString());"
+    },
+    {
+        "id": 80,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Collections Sort",
+        "desc": "Sort a list of integers",
+        "code": "List<Integer> nums = Arrays.asList(3,1,2); Collections.sort(nums); System.out.println(nums);"
+    },
+    {
+        "id": 81,
+        "language": "java",
+        "difficulty": "hard",
+        "title": "Stream Filter",
+        "desc": "Filter a list using streams",
+        "code": "List<Integer> nums = Arrays.asList(1,2,3,4); nums.stream().filter(n -> n % 2 == 0).forEach(System.out::println);"
+    },
+    {
+        "id": 82,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "What is OOP",
+        "desc": "Explain object oriented programming in simple words",
+        "answer": "OOP is a programming style that organizes code around objects and classes. It helps keep code modular, reusable, and easier to maintain.",
+        "example": "A User object can contain name, email, and methods like save() or updateProfile()."
+    },
+    {
+        "id": 83,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "What is a Class",
+        "desc": "Explain what a class is and why it is used",
+        "answer": "A class is a blueprint for creating objects. It defines properties and methods that all objects of that type can share.",
+        "example": "class Car { public $brand; public function start() { return 'Car started'; } }"
+    },
+    {
+        "id": 84,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "What is an Object",
+        "desc": "Explain an object with an example",
+        "answer": "An object is an instance of a class. It is a real entity created from the class blueprint and stores actual values.",
+        "example": "$car = new Car(); $car->brand = 'Toyota';"
+    },
+    {
+        "id": 85,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Encapsulation",
+        "desc": "Explain encapsulation in OOP",
+        "answer": "Encapsulation means hiding internal data and exposing only controlled access through methods. It protects data from direct misuse.",
+        "example": "A BankAccount class keeps balance private and exposes deposit() and withdraw() methods."
+    },
+    {
+        "id": 86,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Inheritance",
+        "desc": "Explain inheritance and its use",
+        "answer": "Inheritance allows one class to reuse properties and methods of another class. It reduces duplicate code and supports code reuse.",
+        "example": "class Vehicle { } class Bike extends Vehicle { }"
+    },
+    {
+        "id": 87,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Polymorphism",
+        "desc": "Explain polymorphism with an example",
+        "answer": "Polymorphism means one interface can behave differently in different classes. The same method name can produce different results.",
+        "example": "Dog::sound() can return 'Bark' while Cat::sound() can return 'Meow'."
+    },
+    {
+        "id": 88,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Abstraction",
+        "desc": "Explain abstraction in OOP",
+        "answer": "Abstraction hides unnecessary details and shows only the important features. It helps reduce complexity.",
+        "example": "A payment system exposes pay() but hides card validation or gateway logic."
+    },
+    {
+        "id": 89,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Why Classes Are Better Than Functions",
+        "desc": "Compare classes and functions for backend development",
+        "answer": "Classes are better when you need grouped data, reusable behavior, and clear structure. Functions are good for small tasks, but classes are easier to scale for real applications because they bundle related data and methods together.",
+        "example": "Instead of separate functions for userCreate, userUpdate, and userDelete, a UserService class can keep all user-related logic together."
+    },
+    {
+        "id": 90,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Constructor",
+        "desc": "Explain constructor and when it is used",
+        "answer": "A constructor is a special method called automatically when an object is created. It is used to initialize properties or required dependencies.",
+        "example": "public function __construct($db) { $this->db = $db; }"
+    },
+    {
+        "id": 91,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Destructor",
+        "desc": "Explain destructor in OOP",
+        "answer": "A destructor is called when an object is destroyed. It is useful for cleanup tasks like closing connections or releasing resources.",
+        "example": "public function __destruct() { /* close connection */ }"
+    },
+    {
+        "id": 92,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Interface",
+        "desc": "Explain interface and its purpose",
+        "answer": "An interface defines a contract that classes must follow. It helps standardize behavior across different classes.",
+        "example": "interface Logger { public function log(string $msg); }"
+    },
+    {
+        "id": 93,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Abstract Class",
+        "desc": "Explain abstract class with example",
+        "answer": "An abstract class cannot be instantiated and can contain both implemented and abstract methods. It is used when you want a common base with shared behavior.",
+        "example": "abstract class Payment { abstract public function pay(); }"
+    },
+    {
+        "id": 94,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Method Overriding",
+        "desc": "Explain method overriding",
+        "answer": "Method overriding happens when a child class provides its own version of a parent class method.",
+        "example": "class A { function run() {} } class B extends A { function run() { echo 'B'; } }"
+    },
+    {
+        "id": 95,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Method Overloading",
+        "desc": "Explain method overloading concept",
+        "answer": "Method overloading means using the same method name with different parameters. In PHP it is often handled using flexible arguments or magic methods.",
+        "example": "function add(...$nums) { return array_sum($nums); }"
+    },
+    {
+        "id": 96,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Dependency Injection",
+        "desc": "Explain dependency injection in backend development",
+        "answer": "Dependency injection means passing required objects into a class instead of creating them inside the class. It improves testing and reduces tight coupling.",
+        "example": "class OrderService { public function __construct(private Mailer $mailer) {} }"
+    },
+    {
+        "id": 97,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Static vs Instance",
+        "desc": "Differentiate static and instance members",
+        "answer": "Static members belong to the class itself, while instance members belong to a specific object. Static methods are useful for shared helpers, while instance methods work with object state.",
+        "example": "User::count() is static; $user->save() is instance based."
+    },
+    {
+        "id": 98,
+        "language": "git",
+        "difficulty": "easy",
+        "title": "What is Git",
+        "desc": "Explain Git and why developers use it",
+        "answer": "Git is a version control system used to track code changes, collaborate with others, and safely manage project history.",
+        "example": "It lets you restore older code, create branches, and work with teammates without overwriting each other."
+    },
+    {
+        "id": 99,
+        "language": "git",
+        "difficulty": "easy",
+        "title": "Git Add",
+        "desc": "Explain git add and why it is used",
+        "answer": "git add moves changes into the staging area. It tells Git which files or changes you want to include in the next commit.",
+        "example": "git add index.html"
+    },
+    {
+        "id": 100,
+        "language": "git",
+        "difficulty": "easy",
+        "title": "Git Commit",
+        "desc": "Explain git commit and why it is used",
+        "answer": "git commit saves staged changes as a version snapshot in the repository history. It creates a safe checkpoint you can return to later.",
+        "example": "git commit -m \"Add login page\""
+    },
+    {
+        "id": 101,
+        "language": "git",
+        "difficulty": "medium",
+        "title": "Git Branch",
+        "desc": "Explain branching in Git",
+        "answer": "A branch lets you work on a separate line of development without affecting the main codebase. It is useful for features, bug fixes, and experiments.",
+        "example": "git checkout -b feature-auth"
+    },
+    {
+        "id": 102,
+        "language": "git",
+        "difficulty": "medium",
+        "title": "Git Merge",
+        "desc": "Explain merge and when it is used",
+        "answer": "Merge combines changes from one branch into another branch. It is used when a feature is ready to be added to main code.",
+        "example": "git merge feature-auth"
+    },
+    {
+        "id": 103,
+        "language": "api",
+        "difficulty": "easy",
+        "title": "What is an API",
+        "desc": "Explain API in backend development",
+        "answer": "An API is a way for two software systems to communicate. In backend work, APIs allow frontends, mobile apps, and other services to request data or perform actions.",
+        "example": "A frontend sends GET /users and receives JSON data from the backend."
+    },
+    {
+        "id": 104,
+        "language": "api",
+        "difficulty": "easy",
+        "title": "REST API",
+        "desc": "Explain REST and its common methods",
+        "answer": "REST is an architectural style for designing APIs. It uses standard HTTP methods like GET, POST, PUT, PATCH, and DELETE.",
+        "example": "GET /users, POST /users, DELETE /users/5"
+    },
+    {
+        "id": 105,
+        "language": "api",
+        "difficulty": "medium",
+        "title": "API Status Codes",
+        "desc": "Explain common HTTP status codes",
+        "answer": "Status codes tell the client whether a request succeeded or failed. 200 means success, 201 means created, 400 means bad request, 401 means unauthorized, 404 means not found, and 500 means server error.",
+        "example": "Return 201 after creating a resource and 404 if the record does not exist."
+    },
+    {
+        "id": 106,
+        "language": "api",
+        "difficulty": "medium",
+        "title": "Validation in API",
+        "desc": "Why is validation important in APIs",
+        "answer": "Validation makes sure API input is correct before saving or processing it. It prevents bad data, security issues, and backend errors.",
+        "example": "Reject an email field if it is missing or not in email format."
+    },
+    {
+        "id": 107,
+        "language": "redis",
+        "difficulty": "easy",
+        "title": "What is Redis",
+        "desc": "Explain Redis in simple terms",
+        "answer": "Redis is an in-memory data store used for caching, fast lookups, session storage, queues, and temporary data. It is very fast because data is stored in memory.",
+        "example": "Store frequently accessed user profile data to reduce database queries."
+    },
+    {
+        "id": 108,
+        "language": "redis",
+        "difficulty": "medium",
+        "title": "Why Use Redis",
+        "desc": "Why developers use Redis in backend applications",
+        "answer": "Redis is used to improve performance, reduce database load, and handle short-lived data such as tokens, rate limits, and cached responses.",
+        "example": "Cache homepage API response for 60 seconds using Redis."
+    },
+    {
+        "id": 109,
+        "language": "redis",
+        "difficulty": "medium",
+        "title": "Redis Cache Example",
+        "desc": "Show a basic Redis cache usage example",
+        "answer": "Store the result in Redis after the first database fetch. Next requests can read from Redis instead of hitting the database again.",
+        "example": "SET user:15 '{\"id\":15,\"name\":\"Abdul\"}' EX 300"
+    },
+    {
+        "id": 110,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Redis Session Store",
+        "desc": "Explain using Redis for sessions",
+        "answer": "Redis can store session data because it is fast and supports expiration. This is useful for scalable applications and multiple servers.",
+        "example": "Use Redis to keep login sessions instead of local file storage."
+    },
+    {
+        "id": 111,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "Why Use OOP",
+        "desc": "Explain why OOP is useful in backend development",
+        "answer": "OOP helps organize code into reusable, testable, and maintainable parts. It is useful when an application grows and logic needs to stay structured.",
+        "example": "A UserService class can keep user-related operations together instead of spreading them across many functions."
+    },
+    {
+        "id": 112,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "Class vs Object",
+        "desc": "Differentiate class and object",
+        "answer": "A class is a blueprint and an object is an actual instance created from that blueprint. The class defines what data and behavior an object should have.",
+        "example": "Car is a class, and myCar is an object created from it."
+    },
+    {
+        "id": 113,
+        "language": "oop",
+        "difficulty": "easy",
+        "title": "Real World Example of Class",
+        "desc": "Give a real-world example for class and object",
+        "answer": "A class can represent a real-world concept like Product, User, or Order. Each object stores its own values, like one user having a different name than another.",
+        "example": "class User { public $name; public $email; }"
+    },
+    {
+        "id": 114,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Encapsulation with Access Modifiers",
+        "desc": "Explain encapsulation using private, protected, and public",
+        "answer": "Encapsulation is achieved using access modifiers. Public members are accessible everywhere, protected members are accessible in parent and child classes, and private members are accessible only inside the class.",
+        "example": "Keep balance private in BankAccount and expose deposit() and withdraw() methods."
+    },
+    {
+        "id": 115,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Inheritance Benefits",
+        "desc": "Why do we use inheritance",
+        "answer": "Inheritance helps reuse common code from a parent class. It avoids duplication and makes it easier to extend behavior in child classes.",
+        "example": "AdminUser extends User and reuses common login and profile logic."
+    },
+    {
+        "id": 116,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Polymorphism in Practice",
+        "desc": "How polymorphism helps in backend applications",
+        "answer": "Polymorphism allows different classes to respond to the same method name in different ways. This makes code flexible and easier to extend.",
+        "example": "A PaymentGateway interface can have RazorpayGateway and StripeGateway implementations."
+    },
+    {
+        "id": 117,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Abstraction in Backend Systems",
+        "desc": "Why abstraction is important",
+        "answer": "Abstraction hides internal complexity and exposes only the required features. It helps developers use a component without knowing every internal detail.",
+        "example": "A NotificationService exposes send() while hiding SMS, email, and push implementation details."
+    },
+    {
+        "id": 118,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Constructor Dependency Injection",
+        "desc": "Explain constructor injection",
+        "answer": "Constructor injection passes required dependencies through the constructor instead of creating them inside the class. It improves testing and reduces tight coupling.",
+        "example": "class OrderService { public function __construct(private Logger $logger) {} }"
+    },
+    {
+        "id": 119,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Interface vs Abstract Class",
+        "desc": "Differentiate interface and abstract class",
+        "answer": "An interface defines a contract with method signatures, while an abstract class can provide both shared logic and abstract methods. Use interfaces for behavior contracts and abstract classes for shared base logic.",
+        "example": "Use an interface for PaymentGateway and an abstract class for shared gateway helper methods."
+    },
+    {
+        "id": 120,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Composition Over Inheritance",
+        "desc": "Explain composition over inheritance",
+        "answer": "Composition means building objects using smaller objects instead of inheriting everything from a parent class. It is often more flexible and easier to maintain than deep inheritance trees.",
+        "example": "An OrderService uses a PaymentProcessor object instead of extending it."
+    },
+    {
+        "id": 121,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "SOLID Principles",
+        "desc": "What are SOLID principles",
+        "answer": "SOLID is a set of five design principles that make code easier to maintain and extend: Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion.",
+        "example": "A class should do one job only, like UserRepository handling data access but not email sending."
+    },
+    {
+        "id": 122,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Single Responsibility Principle",
+        "desc": "Explain SRP with backend example",
+        "answer": "A class should have one reason to change. It should focus on a single responsibility instead of handling unrelated logic.",
+        "example": "Split user validation, database access, and email sending into separate classes."
+    },
+    {
+        "id": 123,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Open Closed Principle",
+        "desc": "Explain OCP",
+        "answer": "A class should be open for extension but closed for modification. You should add new behavior by extending code instead of rewriting stable logic.",
+        "example": "Add a new Payment method by creating a new class instead of changing the existing payment service."
+    },
+    {
+        "id": 124,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Liskov Substitution Principle",
+        "desc": "Explain LSP",
+        "answer": "A child class should be usable anywhere its parent class is expected without breaking behavior. Subclasses should honor the contract of the parent.",
+        "example": "If a function accepts a Shape, it should work correctly with Circle or Rectangle."
+    },
+    {
+        "id": 125,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Interface Segregation Principle",
+        "desc": "Explain ISP",
+        "answer": "Clients should not be forced to depend on methods they do not use. Smaller, focused interfaces are better than large bulky ones.",
+        "example": "Split a huge UserActions interface into smaller Readable and Writable interfaces."
+    },
+    {
+        "id": 126,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Dependency Inversion Principle",
+        "desc": "Explain DIP",
+        "answer": "High-level modules should depend on abstractions, not concrete classes. This makes code easier to test and change.",
+        "example": "OrderService depends on PaymentGateway interface instead of StripeGateway directly."
+    },
+    {
+        "id": 127,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Static Methods",
+        "desc": "When should static methods be used",
+        "answer": "Static methods are useful for utility-style logic that does not need object state. They should not be overused when behavior depends on class data.",
+        "example": "MathHelper::sum() can be static because it does not need an object instance."
+    },
+    {
+        "id": 128,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Traits",
+        "desc": "Explain traits in PHP OOP",
+        "answer": "Traits let classes reuse methods without inheritance. They are useful when multiple unrelated classes need the same shared behavior.",
+        "example": "Use a TimestampTrait to add created_at and updated_at helpers to multiple models."
+    },
+    {
+        "id": 129,
+        "language": "oop",
+        "difficulty": "medium",
+        "title": "Method Visibility",
+        "desc": "Explain public, protected, and private methods",
+        "answer": "Public methods can be called from anywhere, protected methods are only available inside the class and child classes, and private methods are accessible only within the same class.",
+        "example": "Keep helper methods private and expose only the main public API of the class."
+    },
+    {
+        "id": 130,
+        "language": "oop",
+        "difficulty": "hard",
+        "title": "Why Classes Beat Functions in Large Apps",
+        "desc": "Explain why classes are often better than plain functions",
+        "answer": "Classes group related data and behavior together, support encapsulation, and make dependency injection easier. For larger backend systems, this leads to cleaner architecture than many loose functions.",
+        "example": "A UserService class can hold create, update, delete, and validation-related dependencies in one place."
+    },
+    {
+        "id": 131,
+        "language": "sql",
+        "difficulty": "easy",
+        "title": "What is SQL",
+        "desc": "Explain SQL and its purpose",
+        "answer": "SQL is the language used to manage relational databases. It is used to query, insert, update, delete, and structure data.",
+        "example": "SELECT * FROM users;"
+    },
+    {
+        "id": 132,
+        "language": "sql",
+        "difficulty": "easy",
+        "title": "What is a Primary Key",
+        "desc": "Explain primary key in a table",
+        "answer": "A primary key uniquely identifies each row in a table. It must be unique and cannot be null.",
+        "example": "user.id is often used as the primary key."
+    },
+    {
+        "id": 133,
+        "language": "sql",
+        "difficulty": "easy",
+        "title": "What is a Foreign Key",
+        "desc": "Explain foreign key and its use",
+        "answer": "A foreign key links one table to another table's primary key. It helps maintain referential integrity.",
+        "example": "orders.user_id can reference users.id."
+    },
+    {
+        "id": 134,
+        "language": "sql",
+        "difficulty": "medium",
+        "title": "INNER JOIN",
+        "desc": "Explain inner join with an example",
+        "answer": "INNER JOIN returns only matching rows from both tables. It is used when related data exists in both tables.",
+        "example": "SELECT u.name, o.id FROM users u INNER JOIN orders o ON u.id = o.user_id;"
+    },
+    {
+        "id": 135,
+        "language": "sql",
+        "difficulty": "medium",
+        "title": "LEFT JOIN",
+        "desc": "Explain left join with an example",
+        "answer": "LEFT JOIN returns all rows from the left table and matching rows from the right table. If there is no match, right-side columns become NULL.",
+        "example": "SELECT u.name, o.id FROM users u LEFT JOIN orders o ON u.id = o.user_id;"
+    },
+    {
+        "id": 136,
+        "language": "sql",
+        "difficulty": "medium",
+        "title": "GROUP BY",
+        "desc": "Explain group by and its use",
+        "answer": "GROUP BY groups rows that share the same values so aggregate functions can be applied. It is used for counts, sums, averages, and more.",
+        "example": "SELECT user_id, COUNT(*) FROM orders GROUP BY user_id;"
+    },
+    {
+        "id": 137,
+        "language": "sql",
+        "difficulty": "medium",
+        "title": "HAVING vs WHERE",
+        "desc": "Differentiate HAVING and WHERE",
+        "answer": "WHERE filters rows before grouping, while HAVING filters grouped results after GROUP BY. HAVING is used with aggregate conditions.",
+        "example": "HAVING COUNT(*) > 5"
+    },
+    {
+        "id": 138,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "What is Normalization",
+        "desc": "Explain database normalization",
+        "answer": "Normalization is the process of organizing tables to reduce redundancy and improve data integrity. It splits data into logical related tables.",
+        "example": "Store customer details in one table and orders in another instead of repeating customer data in every order row."
+    },
+    {
+        "id": 139,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "First Normal Form",
+        "desc": "Explain 1NF",
+        "answer": "First Normal Form means each column should contain atomic values and each row should be unique.",
+        "example": "Do not store multiple phone numbers in one column as a comma-separated list."
+    },
+    {
+        "id": 140,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Second Normal Form",
+        "desc": "Explain 2NF",
+        "answer": "Second Normal Form means the table must be in 1NF and all non-key columns should depend on the full primary key, not just part of it.",
+        "example": "Separate product details from order-item rows when the key is a composite key."
+    },
+    {
+        "id": 141,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Third Normal Form",
+        "desc": "Explain 3NF",
+        "answer": "Third Normal Form means the table must be in 2NF and non-key columns should not depend on other non-key columns.",
+        "example": "Do not store city_name inside a user table if it depends on city_id."
+    },
+    {
+        "id": 142,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "What is an Index",
+        "desc": "Explain SQL index and why it is used",
+        "answer": "An index helps the database find rows faster by creating a lookup structure. It improves read performance but can slow writes a little because the index must be updated too.",
+        "example": "CREATE INDEX idx_email ON users(email);"
+    },
+    {
+        "id": 143,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "When to Use Indexes",
+        "desc": "Explain when an index is useful",
+        "answer": "Indexes are useful on columns used often in WHERE, JOIN, ORDER BY, or GROUP BY clauses. They should be used carefully on very small or highly changing tables.",
+        "example": "Index a users.email column because it is searched frequently."
+    },
+    {
+        "id": 144,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Transaction",
+        "desc": "Explain transaction in SQL",
+        "answer": "A transaction groups multiple queries into one unit of work. Either all statements succeed and commit, or all changes are rolled back if something fails.",
+        "example": "Transfer money from one account to another using BEGIN, COMMIT, and ROLLBACK."
+    },
+    {
+        "id": 145,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "ACID",
+        "desc": "Explain ACID properties",
+        "answer": "ACID stands for Atomicity, Consistency, Isolation, and Durability. These properties make database transactions reliable and safe.",
+        "example": "A bank transfer should never deduct money from one account without adding it to the other."
+    },
+    {
+        "id": 146,
+        "language": "laravel",
+        "difficulty": "easy",
+        "title": "What is Laravel",
+        "desc": "Explain Laravel in interview style",
+        "answer": "Laravel is a PHP framework used to build web applications and APIs quickly with clean structure, routing, ORM, validation, and many built-in features.",
+        "example": "It simplifies backend development with routes, controllers, Blade, and Eloquent."
+    },
+    {
+        "id": 147,
+        "language": "laravel",
+        "difficulty": "easy",
+        "title": "Route Parameter",
+        "desc": "Explain route parameters in Laravel",
+        "answer": "Route parameters let you pass values through the URL and capture them inside the route or controller.",
+        "example": "Route::get('/users/{id}', function ($id) { return $id; });"
+    },
+    {
+        "id": 148,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Eloquent Model",
+        "desc": "What is Eloquent ORM",
+        "answer": "Eloquent is Laravel's ORM for working with database records as PHP objects. It makes queries easier to read and maintain.",
+        "example": "User::where('active', 1)->get();"
+    },
+    {
+        "id": 149,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Laravel Migration",
+        "desc": "Why migrations are used",
+        "answer": "Migrations version-control your database schema. They let teams create and update tables consistently across environments.",
+        "example": "php artisan make:migration create_users_table"
+    },
+    {
+        "id": 150,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Seeder and Factory",
+        "desc": "Explain seeder and factory use",
+        "answer": "Seeders insert initial data, while factories generate fake data for testing and development.",
+        "example": "User::factory()->count(50)->create();"
+    },
+    {
+        "id": 151,
+        "language": "redis",
+        "difficulty": "easy",
+        "title": "Redis Data Types",
+        "desc": "What data types does Redis support",
+        "answer": "Redis supports strings, hashes, lists, sets, sorted sets, streams, and more. Different data types are used for different caching and data patterns.",
+        "example": "Use a hash for user profile fields and a string for cache values."
+    },
+    {
+        "id": 152,
+        "language": "redis",
+        "difficulty": "medium",
+        "title": "Redis Expiration",
+        "desc": "Explain TTL in Redis",
+        "answer": "TTL sets how long a Redis key should live before it expires automatically. It is useful for caching, sessions, and one-time data.",
+        "example": "SET token:123 abc EX 600"
+    },
+    {
+        "id": 153,
+        "language": "redis",
+        "difficulty": "medium",
+        "title": "Redis as Cache",
+        "desc": "How Redis improves performance",
+        "answer": "Redis stores frequently used data in memory so the backend can serve requests faster and avoid repeated database queries.",
+        "example": "Cache the result of a slow reports query for 5 minutes."
+    },
+    {
+        "id": 154,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Redis Queue",
+        "desc": "Why use Redis for queue systems",
+        "answer": "Redis is often used as a queue backend because it is fast and can hold job data temporarily before workers process it.",
+        "example": "Send emails in the background using a Redis-backed queue."
+    },
+    {
+        "id": 155,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Redis vs Database",
+        "desc": "Differentiate Redis and SQL database",
+        "answer": "Redis is mainly used for fast temporary data and caching, while relational databases are used for durable structured data and long-term storage.",
+        "example": "Keep sessions in Redis and customer orders in MySQL."
+    },
+    {
+        "id": 156,
+        "language": "api",
+        "difficulty": "easy",
+        "title": "GET vs POST",
+        "desc": "Explain GET and POST methods",
+        "answer": "GET is used to fetch data, while POST is used to send new data to the server. GET should not change server state, but POST usually does.",
+        "example": "GET /users fetches users, POST /users creates a user."
+    },
+    {
+        "id": 157,
+        "language": "api",
+        "difficulty": "medium",
+        "title": "PUT vs PATCH",
+        "desc": "Differentiate PUT and PATCH",
+        "answer": "PUT usually replaces the full resource, while PATCH updates only specific fields. PATCH is more efficient for partial updates.",
+        "example": "PATCH /users/5 with only an email field."
+    },
+    {
+        "id": 158,
+        "language": "api",
+        "difficulty": "medium",
+        "title": "API Authentication",
+        "desc": "Explain API authentication",
+        "answer": "API authentication verifies who is making the request. Common methods include tokens, JWT, and session-based auth.",
+        "example": "A client sends an Authorization header with a bearer token."
+    },
+    {
+        "id": 159,
+        "language": "api",
+        "difficulty": "hard",
+        "title": "API Authorization",
+        "desc": "Explain authorization in APIs",
+        "answer": "Authorization checks what an authenticated user is allowed to do. It protects sensitive endpoints and actions.",
+        "example": "Only admins should be allowed to delete a user record."
+    },
+    {
+        "id": 160,
+        "language": "api",
+        "difficulty": "hard",
+        "title": "API Versioning",
+        "desc": "Why API versioning is important",
+        "answer": "Versioning helps you change an API without breaking old clients. It supports long-term maintenance and gradual upgrades.",
+        "example": "Use /api/v1/users and /api/v2/users for different API versions."
+    },
+    {
+        "id": 161,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Query Optimization",
+        "desc": "How do you optimize a slow SQL query",
+        "answer": "Optimize a slow query by checking indexes, reducing selected columns, avoiding unnecessary joins, and using EXPLAIN to inspect the execution plan.",
+        "example": "Use EXPLAIN SELECT ... to see whether the query is using indexes."
+    },
+    {
+        "id": 162,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Composite Index",
+        "desc": "Explain composite index",
+        "answer": "A composite index is an index made from multiple columns. It is useful when queries filter or sort by more than one column.",
+        "example": "CREATE INDEX idx_user_status_created ON users(status, created_at);"
+    },
+    {
+        "id": 163,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Covering Index",
+        "desc": "Explain covering index",
+        "answer": "A covering index contains all columns needed by a query, so the database can answer the query from the index alone without reading the table rows.",
+        "example": "Index a query selecting only id and email if both are in the index."
+    },
+    {
+        "id": 164,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Subquery vs Join",
+        "desc": "When should you use a subquery instead of a join",
+        "answer": "Use joins when you need related rows from multiple tables. Use subqueries when a nested result is simpler or when filtering based on an aggregated result.",
+        "example": "Find users whose order total is above average using a subquery."
+    },
+    {
+        "id": 165,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Deadlock",
+        "desc": "Explain database deadlock",
+        "answer": "A deadlock happens when two transactions wait on each other and neither can continue. It usually happens with conflicting locks.",
+        "example": "Transaction A locks row 1 and waits for row 2 while transaction B locks row 2 and waits for row 1."
+    },
+    {
+        "id": 166,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Normalization vs Denormalization",
+        "desc": "Differentiate normalization and denormalization",
+        "answer": "Normalization reduces redundancy by splitting data into related tables. Denormalization intentionally adds some redundancy to improve read performance in specific cases.",
+        "example": "Analytics tables often store repeated summary data for faster reporting."
+    },
+    {
+        "id": 167,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Index Tradeoffs",
+        "desc": "What is the downside of too many indexes",
+        "answer": "Too many indexes can slow down inserts, updates, and deletes because the database must maintain every index. They also consume extra storage.",
+        "example": "Avoid indexing every single column on a write-heavy table."
+    },
+    {
+        "id": 168,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Query Execution Order",
+        "desc": "Explain SQL query execution order",
+        "answer": "SQL does not execute in the same order it is written. The logical order is usually FROM, JOIN, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, and LIMIT.",
+        "example": "WHERE is applied before SELECT aliases are created."
+    },
+    {
+        "id": 169,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Window Function",
+        "desc": "What is a window function",
+        "answer": "A window function performs calculations across a set of rows related to the current row without collapsing the result set like GROUP BY does.",
+        "example": "ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY created_at DESC)"
+    },
+    {
+        "id": 170,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Pagination with Offset",
+        "desc": "Explain offset pagination",
+        "answer": "Offset pagination uses LIMIT and OFFSET to fetch rows page by page. It is simple but can become slow for very large offsets.",
+        "example": "SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 40;"
+    },
+    {
+        "id": 171,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Keyset Pagination",
+        "desc": "Explain keyset pagination",
+        "answer": "Keyset pagination uses a last-seen key instead of OFFSET. It is usually faster for large datasets and more stable when data changes often.",
+        "example": "SELECT * FROM users WHERE id > 100 ORDER BY id LIMIT 10;"
+    },
+    {
+        "id": 172,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Read Replicas",
+        "desc": "Explain read replicas in databases",
+        "answer": "Read replicas are copies of the primary database used to handle read traffic. They help scale read-heavy applications and reduce load on the main database.",
+        "example": "Send SELECT queries to replicas and write queries to the primary database."
+    },
+    {
+        "id": 173,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Foreign Key Constraints",
+        "desc": "Why foreign key constraints matter",
+        "answer": "Foreign key constraints help prevent invalid relationships between tables. They keep data consistent and reduce orphan records.",
+        "example": "Prevent creating an order for a user that does not exist."
+    },
+    {
+        "id": 174,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "NULL Handling in Joins",
+        "desc": "How do joins behave with NULL values",
+        "answer": "NULL values do not match other values in joins or comparisons unless explicitly handled. This affects filtering and join results.",
+        "example": "Use COALESCE to replace NULL values in output."
+    },
+    {
+        "id": 175,
+        "language": "sql",
+        "difficulty": "hard",
+        "title": "Cascading Delete",
+        "desc": "Explain ON DELETE CASCADE",
+        "answer": "ON DELETE CASCADE automatically deletes child rows when the parent row is deleted. It should be used carefully to avoid accidental data loss.",
+        "example": "Deleting a user can also delete that user's related orders."
+    },
+    {
+        "id": 176,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Service Container",
+        "desc": "Explain Laravel service container",
+        "answer": "The service container is Laravel's dependency injection engine. It resolves and injects class dependencies automatically, which makes code flexible and easier to test.",
+        "example": "Bind an interface to a concrete implementation and let Laravel resolve it."
+    },
+    {
+        "id": 177,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Service Provider",
+        "desc": "What is a service provider",
+        "answer": "Service providers are the central place to bootstrap application services, bindings, and events. They tell Laravel how to set up features during booting.",
+        "example": "Register a repository binding inside AppServiceProvider."
+    },
+    {
+        "id": 178,
+        "language": "laravel",
+        "difficulty": "medium",
+        "title": "Middleware",
+        "desc": "Explain middleware and its purpose",
+        "answer": "Middleware filters HTTP requests before they reach the controller. It is commonly used for authentication, authorization, logging, and request modification.",
+        "example": "Use auth middleware to block unauthenticated users from dashboard routes."
+    },
+    {
+        "id": 179,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Queue Jobs",
+        "desc": "Why use queues in Laravel",
+        "answer": "Queues move slow tasks to the background so the user gets a fast response. They are useful for emails, reports, notifications, and large imports.",
+        "example": "dispatch(new SendWelcomeEmail($user));"
+    },
+    {
+        "id": 180,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Events and Listeners",
+        "desc": "Explain events and listeners",
+        "answer": "Events let the app announce something happened, and listeners handle the response. This decouples logic and keeps the codebase clean.",
+        "example": "Fire a UserRegistered event and let a listener send the welcome email."
+    },
+    {
+        "id": 181,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Observers",
+        "desc": "Explain model observers",
+        "answer": "Observers group model lifecycle logic such as created, updated, and deleted events. They keep model-specific side effects in one place.",
+        "example": "Send a notification whenever an Order model is created."
+    },
+    {
+        "id": 182,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Broadcasting",
+        "desc": "What is event broadcasting",
+        "answer": "Broadcasting sends server-side events to clients in real time. It is used for live notifications, chat, and dashboards.",
+        "example": "Broadcast a new message event to update chat users instantly."
+    },
+    {
+        "id": 183,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Queues vs Events",
+        "desc": "Differentiate queues and events in Laravel",
+        "answer": "Events describe that something happened, while queues execute heavy tasks asynchronously. An event may trigger a queued listener when work should happen in the background.",
+        "example": "A user registers, an event fires, and a queued listener sends the email later."
+    },
+    {
+        "id": 184,
+        "language": "laravel",
+        "difficulty": "hard",
+        "title": "Facades",
+        "desc": "Explain Laravel facades",
+        "answer": "Facades provide a simple static-looking interface to Laravel services. They are convenient, but behind the scenes they resolve objects from the container.",
+        "example": "Cache::remember(...) or DB::transaction(...)"
+    },
+    {
+        "id": 185,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Pub/Sub",
+        "desc": "Explain Redis pub/sub",
+        "answer": "Pub/sub lets Redis publish messages to subscribers in real time. It is useful for live systems and event notifications.",
+        "example": "A chat server publishes a new message event and subscribers receive it instantly."
+    },
+    {
+        "id": 186,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Sorted Sets",
+        "desc": "What are sorted sets in Redis",
+        "answer": "Sorted sets store unique values with scores, which allows ranking and ordered retrieval. They are useful for leaderboards and priority queues.",
+        "example": "Store player scores and fetch the top 10 players."
+    },
+    {
+        "id": 187,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Cache Invalidation",
+        "desc": "Explain cache invalidation",
+        "answer": "Cache invalidation is the process of removing or updating stale cached data when the original data changes. It is one of the most important parts of caching strategy.",
+        "example": "Delete cached user profile data after the profile is updated."
+    },
+    {
+        "id": 188,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Cache Aside Pattern",
+        "desc": "Explain cache aside",
+        "answer": "In cache aside, the application checks Redis first. If the data is missing, it loads from the database, stores it in Redis, and returns it.",
+        "example": "Fetch user settings from Redis, otherwise query MySQL and cache the result."
+    },
+    {
+        "id": 189,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Hot Keys",
+        "desc": "What is a hot key in Redis",
+        "answer": "A hot key is a key that receives very heavy traffic. Hot keys can create performance bottlenecks if not handled carefully.",
+        "example": "A single popular homepage cache key being hit by thousands of users."
+    },
+    {
+        "id": 190,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Distributed Lock",
+        "desc": "Explain distributed locking with Redis",
+        "answer": "Redis can be used to create distributed locks when multiple servers need to coordinate access to a shared resource.",
+        "example": "Lock a cron job so only one server runs it at a time."
+    },
+    {
+        "id": 191,
+        "language": "redis",
+        "difficulty": "hard",
+        "title": "Memory Eviction",
+        "desc": "What happens when Redis memory is full",
+        "answer": "When memory is full, Redis can evict keys based on a configured policy. This helps keep the server stable while trading off some cached data.",
+        "example": "Use LRU eviction when you want Redis to drop least recently used keys."
+    },
+    {
+        "id": 192,
+        "language": "api-security",
+        "difficulty": "easy",
+        "title": "What is JWT",
+        "desc": "Explain JSON Web Token",
+        "answer": "JWT is a compact token format used to securely transmit claims between client and server. It is commonly used for API authentication.",
+        "example": "Send a JWT in the Authorization header as a Bearer token."
+    },
+    {
+        "id": 193,
+        "language": "api-security",
+        "difficulty": "easy",
+        "title": "OAuth 2.0",
+        "desc": "Explain OAuth 2.0",
+        "answer": "OAuth 2.0 is an authorization framework that lets users grant limited access to their data without sharing passwords.",
+        "example": "Login with Google using OAuth to get access to basic profile information."
+    },
+    {
+        "id": 194,
+        "language": "api-security",
+        "difficulty": "easy",
+        "title": "CORS",
+        "desc": "Explain Cross-Origin Resource Sharing",
+        "answer": "CORS is a browser security rule that controls whether one origin can call another origin. It protects users from unauthorized cross-site requests.",
+        "example": "Allow frontend.example.com to call api.example.com using proper CORS headers."
+    },
+    {
+        "id": 195,
+        "language": "api-security",
+        "difficulty": "medium",
+        "title": "Rate Limiting",
+        "desc": "Why rate limiting is used in APIs",
+        "answer": "Rate limiting controls how many requests a client can make in a time window. It protects APIs from abuse and reduces server load.",
+        "example": "Limit a user to 100 requests per minute."
+    },
+    {
+        "id": 196,
+        "language": "api-security",
+        "difficulty": "medium",
+        "title": "API Keys",
+        "desc": "Explain API keys and their use",
+        "answer": "API keys identify the client application calling the API. They are often used for basic access control and usage tracking.",
+        "example": "Send X-API-KEY: your_key_here in request headers."
+    },
+    {
+        "id": 197,
+        "language": "api-security",
+        "difficulty": "medium",
+        "title": "Authentication vs Authorization",
+        "desc": "Differentiate authn and authz",
+        "answer": "Authentication verifies who the user is, while authorization checks what the user is allowed to do.",
+        "example": "A logged-in user is authenticated; only an admin can delete users."
+    },
+    {
+        "id": 198,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Refresh Token",
+        "desc": "Explain refresh token flow",
+        "answer": "A refresh token is used to obtain a new access token after the current access token expires, so the user does not need to log in again too often.",
+        "example": "Use a short-lived access token and a longer-lived refresh token."
+    },
+    {
+        "id": 199,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Token Expiration",
+        "desc": "Why should tokens expire",
+        "answer": "Expiring tokens reduces risk if a token is stolen. Short-lived tokens improve security by limiting the time an attacker can use them.",
+        "example": "Set JWT expiry to 15 minutes."
+    },
+    {
+        "id": 200,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "CSRF",
+        "desc": "Explain CSRF protection",
+        "answer": "CSRF protection prevents a browser from sending unwanted authenticated requests from another site. It is especially important for session-based web apps.",
+        "example": "Use CSRF tokens on form submissions in Laravel."
+    },
+    {
+        "id": 201,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Secure API Design",
+        "desc": "What makes an API secure",
+        "answer": "A secure API uses authentication, authorization, HTTPS, validation, rate limits, and proper error handling.",
+        "example": "Reject invalid payloads and never expose secrets in responses."
+    },
+    {
+        "id": 202,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Bearer Token",
+        "desc": "Explain bearer token usage",
+        "answer": "A bearer token is a credential sent with a request to prove identity. Whoever holds the token can access the resource, so it must be protected carefully.",
+        "example": "Authorization: Bearer eyJhbGciOi..."
+    },
+    {
+        "id": 203,
+        "language": "api-security",
+        "difficulty": "medium",
+        "title": "HTTPS",
+        "desc": "Why APIs should use HTTPS",
+        "answer": "HTTPS encrypts data in transit so attackers cannot easily read or modify API traffic.",
+        "example": "Never send API credentials over plain HTTP."
+    },
+    {
+        "id": 204,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Replay Attack",
+        "desc": "Explain replay attack prevention",
+        "answer": "A replay attack happens when an attacker reuses a captured request or token. Nonces, timestamps, and short token lifetimes help reduce this risk.",
+        "example": "Use timestamp-based request signatures for sensitive APIs."
+    },
+    {
+        "id": 205,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Input Validation",
+        "desc": "Why validate API inputs",
+        "answer": "Validation protects the backend from bad data and many security problems. It is a basic defense layer in every API.",
+        "example": "Check required fields, formats, ranges, and allowed values."
+    },
+    {
+        "id": 206,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "API Logging",
+        "desc": "Why log API requests",
+        "answer": "Logging helps debug issues, monitor usage, and detect suspicious activity. Sensitive values should be masked in logs.",
+        "example": "Store endpoint, status code, response time, and user id."
+    },
+    {
+        "id": 207,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "API Throttling",
+        "desc": "Explain throttling",
+        "answer": "Throttling slows down or limits requests from a client when usage becomes too high. It prevents abuse and protects availability.",
+        "example": "Return HTTP 429 when the client exceeds the request limit."
+    },
+    {
+        "id": 208,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Secret Management",
+        "desc": "How to protect API secrets",
+        "answer": "Secrets should be stored securely in environment variables or secret managers, not hardcoded into code or public repositories.",
+        "example": "Keep API keys in .env and rotate them periodically."
+    },
+    {
+        "id": 209,
+        "language": "eloquent",
+        "difficulty": "easy",
+        "title": "What is Eloquent",
+        "desc": "Explain Laravel Eloquent ORM",
+        "answer": "Eloquent is Laravel's ORM that lets you work with database records using PHP objects instead of writing raw SQL for every task.",
+        "example": "User::find(1);"
+    },
+    {
+        "id": 210,
+        "language": "eloquent",
+        "difficulty": "easy",
+        "title": "Find and FindOrFail",
+        "desc": "Differentiate find and findOrFail",
+        "answer": "find returns a model or null if not found, while findOrFail throws an exception when the record does not exist.",
+        "example": "User::findOrFail(5);"
+    },
+    {
+        "id": 211,
+        "language": "eloquent",
+        "difficulty": "easy",
+        "title": "Create Record",
+        "desc": "Explain how to create a record",
+        "answer": "You can create records using create() when fillable fields are defined, or by instantiating a model and calling save().",
+        "example": "User::create(['name' => 'Abdul', 'email' => 'a@example.com']);"
+    },
+    {
+        "id": 212,
+        "language": "eloquent",
+        "difficulty": "medium",
+        "title": "Update Record",
+        "desc": "Update an existing model record",
+        "answer": "Fetch the model, change fields, and call save(), or use update() on a query.",
+        "example": "$user->name = 'New Name'; $user->save();"
+    },
+    {
+        "id": 213,
+        "language": "eloquent",
+        "difficulty": "medium",
+        "title": "Delete Record",
+        "desc": "Explain deleting a model",
+        "answer": "You can delete a record by calling delete() on a model instance or using query-based deletion for many records.",
+        "example": "$user->delete();"
+    },
+    {
+        "id": 214,
+        "language": "eloquent",
+        "difficulty": "medium",
+        "title": "One to One",
+        "desc": "Explain one-to-one relationship",
+        "answer": "A one-to-one relationship links one record in a table to one record in another table.",
+        "example": "User hasOne(Profile::class)"
+    },
+    {
+        "id": 215,
+        "language": "eloquent",
+        "difficulty": "medium",
+        "title": "One to Many",
+        "desc": "Explain one-to-many relationship",
+        "answer": "A one-to-many relationship means one parent record can have many child records.",
+        "example": "User hasMany(Post::class)"
+    },
+    {
+        "id": 216,
+        "language": "eloquent",
+        "difficulty": "medium",
+        "title": "Belongs To",
+        "desc": "Explain belongsTo relationship",
+        "answer": "belongsTo is used on the child model to point to its parent model.",
+        "example": "Post belongsTo(User::class)"
+    },
+    {
+        "id": 217,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Many to Many",
+        "desc": "Explain many-to-many relation",
+        "answer": "A many-to-many relationship uses a pivot table to connect records from two tables.",
+        "example": "User belongsToMany(Role::class)"
+    },
+    {
+        "id": 218,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Eager Loading",
+        "desc": "Why use eager loading",
+        "answer": "Eager loading loads related data in fewer queries and helps avoid the N+1 problem.",
+        "example": "Post::with('user')->get();"
+    },
+    {
+        "id": 219,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Lazy Loading",
+        "desc": "What is lazy loading",
+        "answer": "Lazy loading loads related data only when it is accessed. It is simple, but it can cause many queries if used carelessly.",
+        "example": "$post->user loads the relation when needed."
+    },
+    {
+        "id": 220,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Query Scopes",
+        "desc": "Explain local query scopes",
+        "answer": "Query scopes let you reuse common query conditions inside a model. They make code cleaner and easier to maintain.",
+        "example": "public function scopeActive($query) { return $query->where('status', 1); }"
+    },
+    {
+        "id": 221,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Mutators and Accessors",
+        "desc": "Explain mutators and accessors",
+        "answer": "Accessors transform data when reading it from the model, and mutators transform data before saving it.",
+        "example": "Uppercase a name on read and hash a password on write."
+    },
+    {
+        "id": 222,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Timestamps",
+        "desc": "Explain created_at and updated_at",
+        "answer": "Eloquent automatically manages timestamps for models unless disabled. It is useful for auditing record changes.",
+        "example": "created_at and updated_at are filled automatically on save."
+    },
+    {
+        "id": 223,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Pivot Tables",
+        "desc": "What is a pivot table",
+        "answer": "A pivot table stores the relationship between two many-to-many models. It can also store extra metadata about that relationship.",
+        "example": "role_user table connects users and roles."
+    },
+    {
+        "id": 224,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Relationship Counts",
+        "desc": "How to count related models",
+        "answer": "You can count related records using withCount or aggregate functions on relationships.",
+        "example": "User::withCount('posts')->get();"
+    },
+    {
+        "id": 225,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Chunking",
+        "desc": "Why use chunk() in Eloquent",
+        "answer": "Chunking processes large result sets in smaller batches so memory usage stays low.",
+        "example": "User::chunk(100, function ($users) { ... });"
+    },
+    {
+        "id": 226,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Pluck",
+        "desc": "Explain pluck method",
+        "answer": "Pluck retrieves a single column from results, which is useful when you only need specific values.",
+        "example": "User::pluck('email');"
+    },
+    {
+        "id": 227,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "Select Specific Columns",
+        "desc": "Why select only needed columns",
+        "answer": "Selecting only needed columns improves performance and reduces memory usage.",
+        "example": "User::select('id', 'name')->get();"
+    },
+    {
+        "id": 228,
+        "language": "mysql-performance",
+        "difficulty": "easy",
+        "title": "Why MySQL Slows Down",
+        "desc": "Common reasons MySQL becomes slow",
+        "answer": "MySQL can slow down because of missing indexes, large tables, poor queries, lock contention, and too many unnecessary joins.",
+        "example": "A query scanning millions of rows without an index is often slow."
+    },
+    {
+        "id": 229,
+        "language": "mysql-performance",
+        "difficulty": "easy",
+        "title": "Use EXPLAIN",
+        "desc": "Why use EXPLAIN in MySQL",
+        "answer": "EXPLAIN shows how MySQL plans to execute a query. It helps identify table scans, bad joins, and index usage.",
+        "example": "EXPLAIN SELECT * FROM users WHERE email = 'test@example.com';"
+    },
+    {
+        "id": 230,
+        "language": "mysql-performance",
+        "difficulty": "medium",
+        "title": "Avoid SELECT *",
+        "desc": "Why avoid SELECT * in production",
+        "answer": "Selecting only needed columns reduces I/O, memory usage, and network transfer. It also makes queries more explicit.",
+        "example": "SELECT id, name FROM users;"
+    },
+    {
+        "id": 231,
+        "language": "mysql-performance",
+        "difficulty": "medium",
+        "title": "Index on Foreign Key",
+        "desc": "Why index foreign keys",
+        "answer": "Foreign key columns are often used in joins and filters, so indexing them improves query performance.",
+        "example": "Add an index on orders.user_id."
+    },
+    {
+        "id": 232,
+        "language": "mysql-performance",
+        "difficulty": "medium",
+        "title": "N+1 in Database",
+        "desc": "Explain database N+1 pattern",
+        "answer": "N+1 happens when one query fetches parent rows and then many extra queries fetch each child row individually.",
+        "example": "Load related records with JOIN or eager loading instead of repeated queries."
+    },
+    {
+        "id": 233,
+        "language": "mysql-performance",
+        "difficulty": "medium",
+        "title": "Slow Query Log",
+        "desc": "What is the slow query log",
+        "answer": "The slow query log records queries that exceed a configured execution time. It helps identify problems in production.",
+        "example": "Enable the slow query log to find expensive queries."
+    },
+    {
+        "id": 234,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Locking Reads",
+        "desc": "Explain locking behavior in MySQL",
+        "answer": "Some queries lock rows or tables during updates or transactions. Locking helps maintain consistency but can hurt concurrency if overused.",
+        "example": "Use transactions carefully to avoid blocking other requests."
+    },
+    {
+        "id": 235,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Buffer Pool",
+        "desc": "Explain InnoDB buffer pool",
+        "answer": "The InnoDB buffer pool caches table and index pages in memory. A properly sized buffer pool improves read performance dramatically.",
+        "example": "Increase buffer pool size on a database server with enough RAM."
+    },
+    {
+        "id": 236,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Query Cache Strategy",
+        "desc": "How should query caching be handled",
+        "answer": "Modern MySQL setups usually rely more on application caching or Redis rather than deprecated query cache features. Cache only expensive and frequently reused results.",
+        "example": "Cache dashboard statistics in Redis instead of querying the database on every request."
+    },
+    {
+        "id": 237,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Pagination Performance",
+        "desc": "Why large OFFSET values are slow",
+        "answer": "Large OFFSET values force MySQL to scan and discard many rows before returning the requested page. Keyset pagination is usually faster for deep pages.",
+        "example": "Use WHERE id > last_seen_id instead of OFFSET for large datasets."
+    },
+    {
+        "id": 238,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Avoid Functions on Indexed Columns",
+        "desc": "Why functions can break index usage",
+        "answer": "Applying functions to indexed columns can prevent the optimizer from using the index efficiently.",
+        "example": "Avoid WHERE DATE(created_at) = '2025-01-01' if you want to keep index use."
+    },
+    {
+        "id": 239,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Batch Inserts",
+        "desc": "Why use batch inserts",
+        "answer": "Batch inserts reduce the number of round trips to the database and improve write performance for bulk operations.",
+        "example": "Insert 100 rows in one query instead of 100 separate inserts."
+    },
+    {
+        "id": 240,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Partitioning",
+        "desc": "Explain table partitioning",
+        "answer": "Partitioning splits a large table into smaller physical pieces. It can improve management and performance for certain large datasets.",
+        "example": "Partition logs by month for easier pruning and querying."
+    },
+    {
+        "id": 241,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "JWT Signature",
+        "desc": "Why JWT signatures matter",
+        "answer": "The JWT signature ensures the token was not changed after it was issued. It protects token integrity.",
+        "example": "Do not trust a JWT if the signature cannot be verified."
+    },
+    {
+        "id": 242,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Scope in OAuth",
+        "desc": "What are OAuth scopes",
+        "answer": "Scopes define what access a client is allowed to request. They let you limit permissions instead of giving full access.",
+        "example": "Read-only profile scope without write permissions."
+    },
+    {
+        "id": 243,
+        "language": "api-security",
+        "difficulty": "hard",
+        "title": "Secret Rotation",
+        "desc": "Why rotate API secrets",
+        "answer": "Rotating secrets reduces the risk of long-term exposure. If a secret leaks, periodic rotation limits damage.",
+        "example": "Regenerate API keys every few months."
+    },
+    {
+        "id": 244,
+        "language": "eloquent",
+        "difficulty": "hard",
+        "title": "withWhereHas",
+        "desc": "Explain filtering with relationship conditions",
+        "answer": "withWhereHas lets you filter models based on related records while eager loading the same relation. It keeps queries clean and efficient.",
+        "example": "User::withWhereHas('posts', fn($q) => $q->where('published', 1))->get();"
+    },
+    {
+        "id": 245,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Analyze Execution Plan",
+        "desc": "How do you read an execution plan",
+        "answer": "An execution plan shows how the optimizer will run a query, including join order, access type, and whether indexes are used.",
+        "example": "Look for full table scans and missing indexes in EXPLAIN output."
+    },
+    {
+        "id": 246,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Covering Queries",
+        "desc": "How to make a query covering",
+        "answer": "A query becomes covering when all required columns are available in the index, reducing the need to read the table rows.",
+        "example": "Index (status, created_at, id) for a query that selects only those fields."
+    },
+    {
+        "id": 247,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Reduce Join Cost",
+        "desc": "How to reduce expensive joins",
+        "answer": "Reduce join cost by joining on indexed columns, selecting fewer rows early, and avoiding unnecessary joins.",
+        "example": "Filter the main table before joining large related tables."
+    },
+    {
+        "id": 248,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Write Amplification",
+        "desc": "Explain write overhead from indexes",
+        "answer": "Every extra index adds overhead during writes because each insert, update, or delete must update all related indexes too.",
+        "example": "Keep only useful indexes on a high-write event table."
+    },
+    {
+        "id": 249,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Big Table Strategy",
+        "desc": "How do you handle very large tables",
+        "answer": "For very large tables, use good indexes, archive old data, consider partitioning, and use pagination or batching in application code.",
+        "example": "Archive old logs into a separate table every month."
+    },
+    {
+        "id": 250,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Connection Pooling",
+        "desc": "Why use connection pooling",
+        "answer": "Connection pooling reuses database connections instead of creating new ones for every request. This reduces overhead and improves throughput.",
+        "example": "A PHP app behind a pool can serve many requests faster."
+    },
+    {
+        "id": 251,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Optimize COUNT",
+        "desc": "How to optimize count queries",
+        "answer": "COUNT queries can be expensive on huge tables. Use indexes, approximate metrics, or cached counters when exact counting is not needed every time.",
+        "example": "Store a cached total_orders counter for a dashboard."
+    },
+    {
+        "id": 252,
+        "language": "mysql-performance",
+        "difficulty": "hard",
+        "title": "Hot Table Writes",
+        "desc": "How to improve write-heavy tables",
+        "answer": "For write-heavy tables, minimize indexes, batch inserts, use transactions wisely, and separate analytical data from transactional data.",
+        "example": "Use a queue to process large import writes in chunks."
     }
 ]
