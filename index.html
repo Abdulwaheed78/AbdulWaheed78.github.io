@@ -29,8 +29,6 @@
 	<link href="css/magnific-popup.css" rel="stylesheet">
 	<!-- Animation Headline CSS -->
 	<link href="css/animation-headline.css" rel="stylesheet">
-	<!-- Slick nav css -->
-	<link rel="stylesheet" href="css/slicknav.css">
 	<!-- Main custom css -->
 	<link href="css/custom.css" rel="stylesheet" media="screen">
 </head>
@@ -53,7 +51,7 @@
 					<h1><span>Abdul</span> Waheed</h1>
 				</a>
 
-				<ul class="navbar-nav ml-auto" id="main-menu">
+				<ul class="navbar-nav ml-auto main-menu" id="main-menu">
 					<li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 					<li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
@@ -63,10 +61,27 @@
 					<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 				</ul>
 
-				<div class="navbar-toggle"></div>
-				<div id="responsive-menu"></div>
+				<button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+					aria-controls="mobile-nav-drawer">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
 			</div>
 		</nav>
+		<div class="mobile-menu-overlay" id="menu-overlay"></div>
+		<aside class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+			<button class="mobile-nav-close" type="button" aria-label="Close menu">&times;</button>
+			<ul class="mobile-nav-list">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#resume">Resume</a></li>
+				<li><a href="#portfolio">Projects</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</aside>
 	</header>
 	<!-- Header Section End -->
 
@@ -373,7 +388,7 @@
 								</div>
 							</div>
 
-							<div class="col-6">
+							<div class="col-md-6">
 								<div class="resume-card wow fadeInUp" data-wow-delay="0.6s">
 									<h6 class="text-dark">Web Developer Intern</h6>
 									<p class="mb-1">
@@ -575,7 +590,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row g-4 mb-4">
+			<div class="row g-4 mb-md-4 mb-3">
 				<div class="col-md-4">
 					<div class="skill-group">
 						<h4>Backend</h4>
@@ -765,8 +780,6 @@
 	<script src="js/isotope.min.js"></script>
 	<!-- Magnific Popup core JS file -->
 	<script src="js/jquery.magnific-popup.min.js"></script>
-	<!-- Slick Nav js file -->
-	<script src="js/jquery.slicknav.js"></script>
 	<!-- SmoothScroll -->
 	<script src="js/SmoothScroll.js"></script>
 	<!-- Animated Headline js file -->
